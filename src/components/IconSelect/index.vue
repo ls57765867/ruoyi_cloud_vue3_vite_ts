@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, computed, nextTick, onMounted, watchEffect } from 'vue'
+import { ref } from 'vue'
 import icons from './requireIcons'
 
 const iconName = ref('')
@@ -38,7 +38,7 @@ function filterIcons() {
   }
 }
 
-function selectedIcon(name) {
+function selectedIcon(name: any) {
   emit('selected', name)
   document.body.click()
 }

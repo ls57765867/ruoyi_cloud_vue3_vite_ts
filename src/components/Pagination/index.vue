@@ -15,6 +15,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref, getCurrentInstance, computed, watch } from 'vue'
 import { scrollTo } from '@/utils/scroll-to'
 
 const props = defineProps({
@@ -59,7 +60,7 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits()
+const emit = defineEmits() as any
 const currentPage = computed({
   get() {
     return props.page
@@ -76,7 +77,7 @@ const pageSize = computed({
     emit('update:limit', val)
   },
 })
-function handleSizeChange(val) {
+function handleSizeChange(val: any) {
   if (currentPage.value * val > props.total) {
     currentPage.value = 1
   }

@@ -46,42 +46,32 @@
 </template>
 
 <script setup lang="ts">
+import { ref, getCurrentInstance, computed, watch } from 'vue'
 import { getToken } from '@/utils/auth'
-
-const props = defineProps({
-  modelValue: [String, Object, Array],
-  // 图片数量限制
-  limit: {
-    type: Number,
-    default: 5,
-  },
-  // 大小限制(MB)
-  fileSize: {
-    type: Number,
-    default: 5,
-  },
-  // 文件类型, 例如['png', 'jpg', 'jpeg']
-  fileType: {
-    type: Array,
-    default: () => ['png', 'jpg', 'jpeg'],
-  },
-  // 是否显示提示
-  isShowTip: {
-    type: Boolean,
-    default: true,
-  },
+interface IProps {
+  modelValue: String | any[] | any
+  limit: number
+  fileSize: number
+  fileType: string[]
+  isShowTip: boolean
+}
+const props = withDefaults(defineProps<IProps>(), {
+  limit: 5,
+  fileSize: 5,
+  fileType: () => ['png', 'jpg', 'jpeg'],
+  isShowTip: true,
 })
 
-const { proxy } = getCurrentInstance()
-const emit = defineEmits()
+const { proxy } = getCurrentInstance() as any
+const emit = defineEmits() as any
 const number = ref(0)
-const uploadList = ref([])
+const uploadList = ref<any[]>([])
 const dialogImageUrl = ref('')
 const dialogVisible = ref(false)
 const baseUrl = import.meta.env.VITE_APP_BASE_API
 const uploadImgUrl = ref(import.meta.env.VITE_APP_BASE_API + '/file/upload') // 上传的图片服务器地址
 const headers = ref({ Authorization: 'Bearer ' + getToken() })
-const fileList = ref([])
+const fileList = ref<any[]>([])
 const showTip = computed(
   () => props.isShowTip && (props.fileType || props.fileSize)
 )
@@ -93,7 +83,7 @@ watch(
       // 首先将值转为数组
       const list = Array.isArray(val) ? val : props.modelValue.split(',')
       // 然后将数组转为对象数组
-      fileList.value = list.map((item) => {
+      fileList.value = list.map((item: any) => {
         if (typeof item === 'string') {
           item = { name: item, url: item }
         }
@@ -108,7 +98,7 @@ watch(
 )
 
 // 上传前loading加载
-function handleBeforeUpload(file) {
+function handleBeforeUpload(file: any) {
   let isImg = false
   if (props.fileType.length) {
     let fileExtension = ''
@@ -146,7 +136,7 @@ function handleExceed() {
 }
 
 // 上传成功回调
-function handleUploadSuccess(res, file) {
+function handleUploadSuccess(res: any, file: any) {
   if (res.code === 200) {
     uploadList.value.push({ name: res.data.url, url: res.data.url })
     uploadedSuccessfully()
@@ -160,11 +150,13 @@ function handleUploadSuccess(res, file) {
 }
 
 // 删除图片
-function handleDelete(file) {
+function handleDelete(file: any) {
   const findex = fileList.value.map((f) => f.name).indexOf(file.name)
   if (findex > -1 && uploadList.value.length === number.value) {
     fileList.value.splice(findex, 1)
     emit('update:modelValue', listToString(fileList.value))
+    return false
+  } else {
     return false
   }
 }
@@ -188,13 +180,13 @@ function handleUploadError() {
 }
 
 // 预览
-function handlePictureCardPreview(file) {
+function handlePictureCardPreview(file: any) {
   dialogImageUrl.value = file.url
   dialogVisible.value = true
 }
 
 // 对象转成指定字符串分隔
-function listToString(list, separator) {
+function listToString(list: any, separator?: any) {
   let strs = ''
   separator = separator || ','
   for (let i in list) {

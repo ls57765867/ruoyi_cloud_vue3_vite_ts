@@ -15,6 +15,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 const props = defineProps({
   src: {
     type: String,
@@ -43,7 +44,7 @@ const realSrcList = computed(() => {
     return
   }
   let real_src_list = props.src.split(',')
-  let srcList = []
+  let srcList: string[] = []
   real_src_list.forEach((item) => {
     return srcList.push(item)
   })

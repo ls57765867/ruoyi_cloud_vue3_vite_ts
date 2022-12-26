@@ -66,8 +66,8 @@
 
 <script setup lang="ts">
 import { getCurrentInstance, ref, reactive } from 'vue'
-import 'vue-cropper/dist/index.css'
 import { VueCropper } from 'vue-cropper'
+import 'vue-cropper/dist/index.css'
 import { uploadAvatar } from '@/api/system/user'
 import useUserStore from '@/store/modules/user'
 const userStore = useUserStore()

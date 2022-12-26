@@ -5,6 +5,7 @@
     "useDefineForClassFields": true,
     "module": "ESNext",
     "moduleResolution": "Node",
+    "noEmit": false,
     "strict": true,
     "jsx": "preserve",
     "sourceMap": true,
@@ -22,13 +23,7 @@
     "types": ["vite/client", "element-plus/global"]
   },
 
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "src/utils/scroll-to.js"
-  ],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   "exclude": ["node_modules", "dist", "script"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

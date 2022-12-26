@@ -7,7 +7,6 @@ declare module 'vue-router' {
     roles?: string
   }
 }
-declare module 'jsencrypt/bin/jsencrypt.min'
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     getDicts: Function
@@ -24,4 +23,3 @@ declare module '@vue/runtime-core' {
     selectDictLabels: Function
   }
 }
-declare module 'vue-cropper'

@@ -1,9 +1,9 @@
 /**
- * 判断url是否是http或https 
+ * 判断url是否是http或https
  * @param {string} path
  * @returns {Boolean}
  */
- export function isHttp(url) {
+export function isHttp(url: any) {
   return url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1
 }
 
@@ -12,7 +12,7 @@
  * @param {string} path
  * @returns {Boolean}
  */
- export function isExternal(path) {
+export function isExternal(path: any) {
   return /^(https?:|mailto:|tel:)/.test(path)
 }
 
@@ -20,7 +20,7 @@
  * @param {string} str
  * @returns {Boolean}
  */
-export function validUsername(str) {
+export function validUsername(str: string) {
   const valid_map = ['admin', 'editor']
   return valid_map.indexOf(str.trim()) >= 0
 }
@@ -29,8 +29,9 @@ export function validUsername(str) {
  * @param {string} url
  * @returns {Boolean}
  */
-export function validURL(url) {
-  const reg = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/
+export function validURL(url: string) {
+  const reg =
+    /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/
   return reg.test(url)
 }
 
@@ -38,7 +39,7 @@ export function validURL(url) {
  * @param {string} str
  * @returns {Boolean}
  */
-export function validLowerCase(str) {
+export function validLowerCase(str: string) {
   const reg = /^[a-z]+$/
   return reg.test(str)
 }
@@ -47,7 +48,7 @@ export function validLowerCase(str) {
  * @param {string} str
  * @returns {Boolean}
  */
-export function validUpperCase(str) {
+export function validUpperCase(str: string) {
   const reg = /^[A-Z]+$/
   return reg.test(str)
 }
@@ -56,7 +57,7 @@ export function validUpperCase(str) {
  * @param {string} str
  * @returns {Boolean}
  */
-export function validAlphabets(str) {
+export function validAlphabets(str: string) {
   const reg = /^[A-Za-z]+$/
   return reg.test(str)
 }
@@ -65,8 +66,9 @@ export function validAlphabets(str) {
  * @param {string} email
  * @returns {Boolean}
  */
-export function validEmail(email) {
-  const reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+export function validEmail(email: string) {
+  const reg =
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   return reg.test(email)
 }
 
@@ -74,7 +76,7 @@ export function validEmail(email) {
  * @param {string} str
  * @returns {Boolean}
  */
-export function isString(str) {
+export function isString(str: any) {
   if (typeof str === 'string' || str instanceof String) {
     return true
   }
@@ -85,7 +87,7 @@ export function isString(str) {
  * @param {Array} arg
  * @returns {Boolean}
  */
-export function isArray(arg) {
+export function isArray(arg: any) {
   if (typeof Array.isArray === 'undefined') {
     return Object.prototype.toString.call(arg) === '[object Array]'
   }

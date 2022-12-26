@@ -140,7 +140,9 @@
 </template>
 
 <script setup lang="ts" name="AuthUser" lang="ts">
-import selectUser from './selectUser'
+import { getCurrentInstance, ref, reactive } from 'vue'
+import { useRoute } from 'vue-router'
+import selectUser from './selectUser.vue'
 import {
   allocatedUserList,
   authUserCancel,
@@ -148,7 +150,7 @@ import {
 } from '@/api/system/role'
 
 const route = useRoute()
-const { proxy } = getCurrentInstance()
+const { proxy } = getCurrentInstance() as any
 const { sys_normal_disable } = proxy.useDict('sys_normal_disable')
 
 const userList = ref([])
@@ -158,7 +160,7 @@ const multiple = ref(true)
 const total = ref(0)
 const userIds = ref([])
 
-const queryParams = reactive({
+const queryParams: any = reactive({
   pageNum: 1,
   pageSize: 10,
   roleId: route.params.roleId,
@@ -169,7 +171,7 @@ const queryParams = reactive({
 /** 查询授权用户列表 */
 function getList() {
   loading.value = true
-  allocatedUserList(queryParams).then((response) => {
+  allocatedUserList(queryParams).then((response: any) => {
     userList.value = response.rows
     total.value = response.total
     loading.value = false
@@ -191,8 +193,8 @@ function resetQuery() {
   handleQuery()
 }
 // 多选框选中数据
-function handleSelectionChange(selection) {
-  userIds.value = selection.map((item) => item.userId)
+function handleSelectionChange(selection: any) {
+  userIds.value = selection.map((item: any) => item.userId)
   multiple.value = !selection.length
 }
 /** 打开授权用户表弹窗 */
@@ -200,7 +202,7 @@ function openSelectUser() {
   proxy.$refs['selectRef'].show()
 }
 /** 取消授权按钮操作 */
-function cancelAuthUser(row) {
+function cancelAuthUser(row: any) {
   proxy.$modal
     .confirm('确认要取消该用户"' + row.userName + '"角色吗？')
     .then(function () {
@@ -213,7 +215,7 @@ function cancelAuthUser(row) {
     .catch(() => {})
 }
 /** 批量取消授权按钮操作 */
-function cancelAuthUserAll(row) {
+function cancelAuthUserAll(row: any) {
   const roleId = queryParams.roleId
   const uIds = userIds.value.join(',')
   proxy.$modal

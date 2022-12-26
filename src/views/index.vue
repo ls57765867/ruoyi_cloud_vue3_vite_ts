@@ -805,9 +805,10 @@
 </template>
 
 <script setup lang="ts" name="Index" lang="ts">
+import { ref } from 'vue'
 const version = ref('3.6.1')
 
-function goTarget(url) {
+function goTarget(url: any) {
   window.open(url, '__blank')
 }
 </script>

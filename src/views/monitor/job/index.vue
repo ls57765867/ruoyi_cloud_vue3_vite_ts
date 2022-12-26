@@ -396,6 +396,8 @@
 </template>
 
 <script setup lang="ts" name="Job">
+import { toRefs, ref, getCurrentInstance, reactive } from 'vue'
+import { useRouter } from 'vue-router'
 import {
   listJob,
   getJob,
@@ -405,19 +407,19 @@ import {
   runJob,
   changeJobStatus,
 } from '@/api/monitor/job'
-import Crontab from '@/components/Crontab'
+import Crontab from '@/components/Crontab/index.vue'
 const router = useRouter()
-const { proxy } = getCurrentInstance()
+const { proxy } = getCurrentInstance() as any
 const { sys_job_group, sys_job_status } = proxy.useDict(
   'sys_job_group',
   'sys_job_status'
 )
 
-const jobList = ref([])
+const jobList = ref<any[]>([])
 const open = ref(false)
 const loading = ref(true)
 const showSearch = ref(true)
-const ids = ref([])
+const ids = ref<any[]>([])
 const single = ref(true)
 const multiple = ref(true)
 const total = ref(0)
@@ -426,7 +428,7 @@ const openView = ref(false)
 const openCron = ref(false)
 const expression = ref('')
 
-const data = reactive({
+const data: any = reactive({
   form: {},
   queryParams: {
     pageNum: 1,
@@ -451,14 +453,14 @@ const { queryParams, form, rules } = toRefs(data)
 /** 查询定时任务列表 */
 function getList() {
   loading.value = true
-  listJob(queryParams.value).then((response) => {
+  listJob(queryParams.value).then((response: any) => {
     jobList.value = response.rows
     total.value = response.total
     loading.value = false
   })
 }
 /** 任务组名字典翻译 */
-function jobGroupFormat(row, column) {
+function jobGroupFormat(row: any, column?: any) {
   return proxy.selectDictLabel(sys_job_group.value, row.jobGroup)
 }
 /** 取消按钮 */
@@ -491,13 +493,13 @@ function resetQuery() {
   handleQuery()
 }
 // 多选框选中数据
-function handleSelectionChange(selection) {
-  ids.value = selection.map((item) => item.jobId)
+function handleSelectionChange(selection: any) {
+  ids.value = selection.map((item: any) => item.jobId)
   single.value = selection.length != 1
   multiple.value = !selection.length
 }
 // 更多操作触发
-function handleCommand(command, row) {
+function handleCommand(command: any, row: any) {
   switch (command) {
     case 'handleRun':
       handleRun(row)
@@ -513,7 +515,7 @@ function handleCommand(command, row) {
   }
 }
 // 任务状态修改
-function handleStatusChange(row) {
+function handleStatusChange(row: any) {
   let text = row.status === '0' ? '启用' : '停用'
   proxy.$modal
     .confirm('确认要"' + text + '""' + row.jobName + '"任务吗?')
@@ -528,7 +530,7 @@ function handleStatusChange(row) {
     })
 }
 /* 立即执行一次 */
-function handleRun(row) {
+function handleRun(row: any) {
   proxy.$modal
     .confirm('确认要立即执行一次"' + row.jobName + '"任务吗?')
     .then(function () {
@@ -540,7 +542,7 @@ function handleRun(row) {
     .catch(() => {})
 }
 /** 任务详细信息 */
-function handleView(row) {
+function handleView(row: any) {
   getJob(row.jobId).then((response) => {
     form.value = response.data
     openView.value = true
@@ -552,11 +554,11 @@ function handleShowCron() {
   openCron.value = true
 }
 /** 确定后回传值 */
-function crontabFill(value) {
+function crontabFill(value: any) {
   form.value.cronExpression = value
 }
 /** 任务日志列表查询 */
-function handleJobLog(row) {
+function handleJobLog(row: any) {
   const jobId = row.jobId || 0
   router.push('/monitor/job-log/index/' + jobId)
 }
@@ -567,7 +569,7 @@ function handleAdd() {
   title.value = '添加任务'
 }
 /** 修改按钮操作 */
-function handleUpdate(row) {
+function handleUpdate(row: any) {
   reset()
   const jobId = row.jobId || ids.value
   getJob(jobId).then((response) => {
@@ -578,7 +580,7 @@ function handleUpdate(row) {
 }
 /** 提交按钮 */
 function submitForm() {
-  proxy.$refs['jobRef'].validate((valid) => {
+  proxy.$refs['jobRef'].validate((valid: any) => {
     if (valid) {
       if (form.value.jobId != undefined) {
         updateJob(form.value).then((response) => {
@@ -597,7 +599,7 @@ function submitForm() {
   })
 }
 /** 删除按钮操作 */
-function handleDelete(row) {
+function handleDelete(row: any) {
   const jobIds = row.jobId || ids.value
   proxy.$modal
     .confirm('是否确认删除定时任务编号为"' + jobIds + '"的数据项?')

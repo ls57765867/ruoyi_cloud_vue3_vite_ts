@@ -201,6 +201,8 @@
 </template>
 
 <script setup lang="ts" name="Post">
+import { getCurrentInstance, ref, reactive, toRefs } from 'vue'
+
 import {
   listPost,
   addPost,
@@ -209,7 +211,7 @@ import {
   updatePost,
 } from '@/api/system/post'
 
-const { proxy } = getCurrentInstance()
+const { proxy } = getCurrentInstance() as any
 const { sys_normal_disable } = proxy.useDict('sys_normal_disable')
 
 const postList = ref([])
@@ -222,7 +224,7 @@ const multiple = ref(true)
 const total = ref(0)
 const title = ref('')
 
-const data = reactive({
+const data: any = reactive({
   form: {},
   queryParams: {
     pageNum: 1,
@@ -249,7 +251,7 @@ const { queryParams, form, rules } = toRefs(data)
 /** 查询岗位列表 */
 function getList() {
   loading.value = true
-  listPost(queryParams.value).then((response) => {
+  listPost(queryParams.value).then((response: any) => {
     postList.value = response.rows
     total.value = response.total
     loading.value = false
@@ -283,8 +285,8 @@ function resetQuery() {
   handleQuery()
 }
 /** 多选框选中数据 */
-function handleSelectionChange(selection) {
-  ids.value = selection.map((item) => item.postId)
+function handleSelectionChange(selection: any) {
+  ids.value = selection.map((item: any) => item.postId)
   single.value = selection.length != 1
   multiple.value = !selection.length
 }
@@ -295,7 +297,7 @@ function handleAdd() {
   title.value = '添加岗位'
 }
 /** 修改按钮操作 */
-function handleUpdate(row) {
+function handleUpdate(row: any) {
   reset()
   const postId = row.postId || ids.value
   getPost(postId).then((response) => {
@@ -306,7 +308,7 @@ function handleUpdate(row) {
 }
 /** 提交按钮 */
 function submitForm() {
-  proxy.$refs['postRef'].validate((valid) => {
+  proxy.$refs['postRef'].validate((valid: any) => {
     if (valid) {
       if (form.value.postId != undefined) {
         updatePost(form.value).then((response) => {
@@ -325,7 +327,7 @@ function submitForm() {
   })
 }
 /** 删除按钮操作 */
-function handleDelete(row) {
+function handleDelete(row: any) {
   const postIds = row.postId || ids.value
   proxy.$modal
     .confirm('是否确认删除岗位编号为"' + postIds + '"的数据项？')

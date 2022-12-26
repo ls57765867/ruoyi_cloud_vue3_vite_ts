@@ -23,17 +23,16 @@
 </template>
 
 <script setup lang="ts">
+import { getCurrentInstance, ref } from 'vue'
 import { updateUserProfile } from '@/api/system/user'
+interface IProps {
+  user: any
+}
+const props = defineProps<IProps>()
 
-const props = defineProps({
-  user: {
-    type: Object,
-  },
-})
+const { proxy } = getCurrentInstance() as any
 
-const { proxy } = getCurrentInstance()
-
-const rules = ref({
+const rules = ref<any>({
   nickName: [{ required: true, message: '用户昵称不能为空', trigger: 'blur' }],
   email: [
     { required: true, message: '邮箱地址不能为空', trigger: 'blur' },
@@ -55,7 +54,7 @@ const rules = ref({
 
 /** 提交按钮 */
 function submit() {
-  proxy.$refs.userRef.validate((valid) => {
+  proxy.$refs.userRef.validate((valid: any) => {
     if (valid) {
       updateUserProfile(props.user).then((response) => {
         proxy.$modal.msgSuccess('修改成功')

@@ -385,6 +385,7 @@
 </template>
 
 <script setup lang="ts" name="Menu">
+import { getCurrentInstance, ref, reactive, toRefs, nextTick } from 'vue'
 import {
   addMenu,
   delMenu,
@@ -392,11 +393,11 @@ import {
   listMenu,
   updateMenu,
 } from '@/api/system/menu'
-import SvgIcon from '@/components/SvgIcon'
-import IconSelect from '@/components/IconSelect'
+import SvgIcon from '@/components/SvgIcon/index.vue'
+import IconSelect from '@/components/IconSelect/index.vue'
 import { ClickOutside as vClickOutside } from 'element-plus'
 
-const { proxy } = getCurrentInstance()
+const { proxy } = getCurrentInstance() as any
 const { sys_show_hide, sys_normal_disable } = proxy.useDict(
   'sys_show_hide',
   'sys_normal_disable'
@@ -407,13 +408,13 @@ const open = ref(false)
 const loading = ref(true)
 const showSearch = ref(true)
 const title = ref('')
-const menuOptions = ref([])
+const menuOptions = ref<any[]>([])
 const isExpandAll = ref(false)
 const refreshTable = ref(true)
 const showChooseIcon = ref(false)
-const iconSelectRef = ref(null)
+const iconSelectRef = ref<InstanceType<typeof IconSelect>>()
 
-const data = reactive({
+const data: any = reactive({
   form: {},
   queryParams: {
     menuName: undefined,
@@ -472,16 +473,16 @@ function reset() {
 }
 /** 展示下拉图标 */
 function showSelectIcon() {
-  iconSelectRef.value.reset()
+  iconSelectRef.value?.reset()
   showChooseIcon.value = true
 }
 /** 选择图标 */
-function selected(name) {
+function selected(name: any) {
   form.value.icon = name
   showChooseIcon.value = false
 }
 /** 图标外层点击隐藏下拉列表 */
-function hideSelectIcon(event) {
+function hideSelectIcon(event: any) {
   var elem =
     event.relatedTarget ||
     event.srcElement ||
@@ -502,7 +503,7 @@ function resetQuery() {
   handleQuery()
 }
 /** 新增按钮操作 */
-function handleAdd(row) {
+function handleAdd(row: any) {
   reset()
   getTreeselect()
   if (row != null && row.menuId) {
@@ -522,7 +523,7 @@ function toggleExpandAll() {
   })
 }
 /** 修改按钮操作 */
-async function handleUpdate(row) {
+async function handleUpdate(row: any) {
   reset()
   await getTreeselect()
   getMenu(row.menuId).then((response) => {
@@ -533,7 +534,7 @@ async function handleUpdate(row) {
 }
 /** 提交按钮 */
 function submitForm() {
-  proxy.$refs['menuRef'].validate((valid) => {
+  proxy.$refs['menuRef'].validate((valid: any) => {
     if (valid) {
       if (form.value.menuId != undefined) {
         updateMenu(form.value).then((response) => {
@@ -552,7 +553,7 @@ function submitForm() {
   })
 }
 /** 删除按钮操作 */
-function handleDelete(row) {
+function handleDelete(row: any) {
   proxy.$modal
     .confirm('是否确认删除名称为"' + row.menuName + '"的数据项?')
     .then(function () {

@@ -233,6 +233,7 @@
 </template>
 
 <script setup lang="ts" name="Config">
+import { reactive, getCurrentInstance, ref, toRefs } from 'vue'
 import {
   listConfig,
   getConfig,
@@ -242,7 +243,7 @@ import {
   refreshCache,
 } from '@/api/system/config'
 
-const { proxy } = getCurrentInstance()
+const { proxy } = getCurrentInstance() as any
 const { sys_yes_no } = proxy.useDict('sys_yes_no')
 
 const configList = ref([])
@@ -254,9 +255,9 @@ const single = ref(true)
 const multiple = ref(true)
 const total = ref(0)
 const title = ref('')
-const dateRange = ref([])
+const dateRange = ref<any>([])
 
-const data = reactive({
+const data: any = reactive({
   form: {},
   queryParams: {
     pageNum: 1,
@@ -284,7 +285,7 @@ const { queryParams, form, rules } = toRefs(data)
 function getList() {
   loading.value = true
   listConfig(proxy.addDateRange(queryParams.value, dateRange.value)).then(
-    (response) => {
+    (response: any) => {
       configList.value = response.rows
       total.value = response.total
       loading.value = false
@@ -320,8 +321,8 @@ function resetQuery() {
   handleQuery()
 }
 /** 多选框选中数据 */
-function handleSelectionChange(selection) {
-  ids.value = selection.map((item) => item.configId)
+function handleSelectionChange(selection: any) {
+  ids.value = selection.map((item: any) => item.configId)
   single.value = selection.length != 1
   multiple.value = !selection.length
 }
@@ -332,7 +333,7 @@ function handleAdd() {
   title.value = '添加参数'
 }
 /** 修改按钮操作 */
-function handleUpdate(row) {
+function handleUpdate(row: any) {
   reset()
   const configId = row.configId || ids.value
   getConfig(configId).then((response) => {
@@ -343,7 +344,7 @@ function handleUpdate(row) {
 }
 /** 提交按钮 */
 function submitForm() {
-  proxy.$refs['configRef'].validate((valid) => {
+  proxy.$refs['configRef'].validate((valid: any) => {
     if (valid) {
       if (form.value.configId != undefined) {
         updateConfig(form.value).then((response) => {
@@ -362,7 +363,7 @@ function submitForm() {
   })
 }
 /** 删除按钮操作 */
-function handleDelete(row) {
+function handleDelete(row: any) {
   const configIds = row.configId || ids.value
   proxy.$modal
     .confirm('是否确认删除参数编号为"' + configIds + '"的数据项？')

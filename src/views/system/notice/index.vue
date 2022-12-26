@@ -228,6 +228,7 @@
 </template>
 
 <script setup lang="ts" name="Notice">
+import { getCurrentInstance, ref, reactive, toRefs } from 'vue'
 import {
   listNotice,
   getNotice,
@@ -236,7 +237,7 @@ import {
   updateNotice,
 } from '@/api/system/notice'
 
-const { proxy } = getCurrentInstance()
+const { proxy } = getCurrentInstance() as any
 const { sys_notice_status, sys_notice_type } = proxy.useDict(
   'sys_notice_status',
   'sys_notice_type'
@@ -252,7 +253,7 @@ const multiple = ref(true)
 const total = ref(0)
 const title = ref('')
 
-const data = reactive({
+const data: any = reactive({
   form: {},
   queryParams: {
     pageNum: 1,
@@ -276,7 +277,7 @@ const { queryParams, form, rules } = toRefs(data)
 /** 查询公告列表 */
 function getList() {
   loading.value = true
-  listNotice(queryParams.value).then((response) => {
+  listNotice(queryParams.value).then((response: any) => {
     noticeList.value = response.rows
     total.value = response.total
     loading.value = false
@@ -309,8 +310,8 @@ function resetQuery() {
   handleQuery()
 }
 /** 多选框选中数据 */
-function handleSelectionChange(selection) {
-  ids.value = selection.map((item) => item.noticeId)
+function handleSelectionChange(selection: any) {
+  ids.value = selection.map((item: any) => item.noticeId)
   single.value = selection.length != 1
   multiple.value = !selection.length
 }
@@ -321,7 +322,7 @@ function handleAdd() {
   title.value = '添加公告'
 }
 /**修改按钮操作 */
-function handleUpdate(row) {
+function handleUpdate(row: any) {
   reset()
   const noticeId = row.noticeId || ids.value
   getNotice(noticeId).then((response) => {
@@ -332,7 +333,7 @@ function handleUpdate(row) {
 }
 /** 提交按钮 */
 function submitForm() {
-  proxy.$refs['noticeRef'].validate((valid) => {
+  proxy.$refs['noticeRef'].validate((valid: any) => {
     if (valid) {
       if (form.value.noticeId != undefined) {
         updateNotice(form.value).then((response) => {
@@ -351,7 +352,7 @@ function submitForm() {
   })
 }
 /** 删除按钮操作 */
-function handleDelete(row) {
+function handleDelete(row: any) {
   const noticeIds = row.noticeId || ids.value
   proxy.$modal
     .confirm('是否确认删除公告编号为"' + noticeIds + '"的数据项？')

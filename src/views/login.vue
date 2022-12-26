@@ -82,6 +82,8 @@
 </template>
 
 <script setup lang="ts">
+import { ref, getCurrentInstance } from 'vue'
+import { useRouter } from 'vue-router'
 import { getCodeImg } from '@/api/login'
 import Cookies from 'js-cookie'
 import { encrypt, decrypt } from '@/utils/jsencrypt'
@@ -89,9 +91,9 @@ import useUserStore from '@/store/modules/user'
 
 const userStore = useUserStore()
 const router = useRouter()
-const { proxy } = getCurrentInstance()
+const { proxy } = getCurrentInstance() as any
 
-const loginForm = ref({
+const loginForm: any = ref({
   username: 'admin',
   password: 'admin123',
   rememberMe: false,
@@ -114,7 +116,7 @@ const register = ref(false)
 const redirect = ref(undefined)
 
 function handleLogin() {
-  proxy.$refs.loginRef.validate((valid) => {
+  proxy.$refs.loginRef.validate((valid: any) => {
     if (valid) {
       loading.value = true
       // 勾选了需要记住密码设置在 cookie 中设置记住用户名和密码
@@ -148,7 +150,7 @@ function handleLogin() {
 }
 
 function getCode() {
-  getCodeImg().then((res) => {
+  getCodeImg().then((res: any) => {
     captchaEnabled.value =
       res.captchaEnabled === undefined ? true : res.captchaEnabled
     if (captchaEnabled.value) {

@@ -96,6 +96,7 @@
 </template>
 
 <script setup lang="ts" name="SelectUser">
+import { getCurrentInstance, ref, reactive } from 'vue'
 import { authUserSelectAll, unallocatedUserList } from '@/api/system/role'
 
 const props = defineProps({
@@ -104,7 +105,7 @@ const props = defineProps({
   },
 })
 
-const { proxy } = getCurrentInstance()
+const { proxy } = getCurrentInstance() as any
 const { sys_normal_disable } = proxy.useDict('sys_normal_disable')
 
 const userList = ref([])
@@ -112,7 +113,7 @@ const visible = ref(false)
 const total = ref(0)
 const userIds = ref([])
 
-const queryParams = reactive({
+const queryParams: any = reactive({
   pageNum: 1,
   pageSize: 10,
   roleId: undefined,
@@ -127,16 +128,16 @@ function show() {
   visible.value = true
 }
 /**选择行 */
-function clickRow(row) {
+function clickRow(row: any) {
   proxy.$refs['refTable'].toggleRowSelection(row)
 }
 // 多选框选中数据
-function handleSelectionChange(selection) {
-  userIds.value = selection.map((item) => item.userId)
+function handleSelectionChange(selection: any) {
+  userIds.value = selection.map((item: any) => item.userId)
 }
 // 查询表数据
 function getList() {
-  unallocatedUserList(queryParams).then((res) => {
+  unallocatedUserList(queryParams).then((res: any) => {
     userList.value = res.rows
     total.value = res.total
   })
@@ -160,7 +161,7 @@ function handleSelectUser() {
     proxy.$modal.msgError('请选择要分配的用户')
     return
   }
-  authUserSelectAll({ roleId: roleId, userIds: uIds }).then((res) => {
+  authUserSelectAll({ roleId: roleId, userIds: uIds }).then((res: any) => {
     proxy.$modal.msgSuccess(res.msg)
     if (res.code === 200) {
       visible.value = false

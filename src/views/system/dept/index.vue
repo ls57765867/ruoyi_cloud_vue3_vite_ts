@@ -215,6 +215,8 @@
 </template>
 
 <script setup lang="ts" name="Dept">
+import { reactive, getCurrentInstance, ref, toRefs, nextTick } from 'vue'
+
 import {
   listDept,
   getDept,
@@ -224,19 +226,19 @@ import {
   listDeptExcludeChild,
 } from '@/api/system/dept'
 
-const { proxy } = getCurrentInstance()
+const { proxy } = getCurrentInstance() as any
 const { sys_normal_disable } = proxy.useDict('sys_normal_disable')
 
-const deptList = ref([])
+const deptList = ref<any[]>([])
 const open = ref(false)
 const loading = ref(true)
 const showSearch = ref(true)
 const title = ref('')
-const deptOptions = ref([])
+const deptOptions = ref<any[]>([])
 const isExpandAll = ref(true)
 const refreshTable = ref(true)
 
-const data = reactive({
+const data: any = reactive({
   form: {},
   queryParams: {
     deptName: undefined,
@@ -308,7 +310,7 @@ function resetQuery() {
   handleQuery()
 }
 /** 新增按钮操作 */
-function handleAdd(row) {
+function handleAdd(row: any) {
   reset()
   listDept().then((response) => {
     deptOptions.value = proxy.handleTree(response.data, 'deptId')
@@ -328,7 +330,7 @@ function toggleExpandAll() {
   })
 }
 /** 修改按钮操作 */
-function handleUpdate(row) {
+function handleUpdate(row: any) {
   reset()
   listDeptExcludeChild(row.deptId).then((response) => {
     deptOptions.value = proxy.handleTree(response.data, 'deptId')
@@ -341,7 +343,7 @@ function handleUpdate(row) {
 }
 /** 提交按钮 */
 function submitForm() {
-  proxy.$refs['deptRef'].validate((valid) => {
+  proxy.$refs['deptRef'].validate((valid: any) => {
     if (valid) {
       if (form.value.deptId != undefined) {
         updateDept(form.value).then((response) => {
@@ -360,7 +362,7 @@ function submitForm() {
   })
 }
 /** 删除按钮操作 */
-function handleDelete(row) {
+function handleDelete(row: any) {
   proxy.$modal
     .confirm('是否确认删除名称为"' + row.deptName + '"的数据项?')
     .then(function () {

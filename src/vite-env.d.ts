@@ -7,3 +7,21 @@ declare module 'vue-router' {
     roles?: string
   }
 }
+declare module 'jsencrypt/bin/jsencrypt.min'
+declare module '@vue/runtime-core' {
+  interface ComponentCustomProperties {
+    getDicts: Function
+    getConfigKey: Function
+    download: Function
+    parseTime: Function
+    dateTimeSub: Function
+    resetForm: Function
+    cleanTableSelection: Function
+    setTableRowSelected: Function
+    handleTree: Function
+    addDateRange: Function
+    selectDictLabel: Function
+    selectDictLabels: Function
+  }
+}
+declare module 'vue-cropper'

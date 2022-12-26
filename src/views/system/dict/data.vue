@@ -241,6 +241,8 @@
 </template>
 
 <script setup lang="ts" name="Data" lang="ts">
+import { reactive, getCurrentInstance, ref, toRefs, nextTick } from 'vue'
+import { useRoute } from 'vue-router'
 import useDictStore from '@/store/modules/dict'
 import {
   optionselect as getDictOptionselect,
@@ -254,7 +256,7 @@ import {
   updateData,
 } from '@/api/system/dict/data'
 
-const { proxy } = getCurrentInstance()
+const { proxy } = getCurrentInstance() as any
 const { sys_normal_disable } = proxy.useDict('sys_normal_disable')
 
 const dataList = ref([])
@@ -267,7 +269,7 @@ const multiple = ref(true)
 const total = ref(0)
 const title = ref('')
 const defaultDictType = ref('')
-const typeOptions = ref([])
+const typeOptions = ref<any[]>([])
 const route = useRoute()
 // 数据标签回显样式
 const listClassOptions = ref([
@@ -279,7 +281,7 @@ const listClassOptions = ref([
   { value: 'danger', label: '危险' },
 ])
 
-const data = reactive({
+const data: any = reactive({
   form: {},
   queryParams: {
     pageNum: 1,
@@ -304,7 +306,7 @@ const data = reactive({
 const { queryParams, form, rules } = toRefs(data)
 
 /** 查询字典类型详细 */
-function getTypes(dictId) {
+function getTypes(dictId: any) {
   getType(dictId).then((response) => {
     queryParams.value.dictType = response.data.dictType
     defaultDictType.value = response.data.dictType
@@ -321,7 +323,7 @@ function getTypeList() {
 /** 查询字典数据列表 */
 function getList() {
   loading.value = true
-  listData(queryParams.value).then((response) => {
+  listData(queryParams.value).then((response: any) => {
     dataList.value = response.rows
     total.value = response.total
     loading.value = false
@@ -370,13 +372,13 @@ function handleAdd() {
   form.value.dictType = queryParams.value.dictType
 }
 /** 多选框选中数据 */
-function handleSelectionChange(selection) {
-  ids.value = selection.map((item) => item.dictCode)
+function handleSelectionChange(selection: any) {
+  ids.value = selection.map((item: any) => item.dictCode)
   single.value = selection.length != 1
   multiple.value = !selection.length
 }
 /** 修改按钮操作 */
-function handleUpdate(row) {
+function handleUpdate(row: any) {
   reset()
   const dictCode = row.dictCode || ids.value
   getData(dictCode).then((response) => {
@@ -387,7 +389,7 @@ function handleUpdate(row) {
 }
 /** 提交按钮 */
 function submitForm() {
-  proxy.$refs['dataRef'].validate((valid) => {
+  proxy.$refs['dataRef'].validate((valid: any) => {
     if (valid) {
       if (form.value.dictCode != undefined) {
         updateData(form.value).then((response) => {
@@ -408,7 +410,7 @@ function submitForm() {
   })
 }
 /** 删除按钮操作 */
-function handleDelete(row) {
+function handleDelete(row: any) {
   const dictCodes = row.dictCode || ids.value
   proxy.$modal
     .confirm('是否确认删除字典编码为"' + dictCodes + '"的数据项？')

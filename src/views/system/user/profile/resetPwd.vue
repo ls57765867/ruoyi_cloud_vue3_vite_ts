@@ -32,9 +32,10 @@
 </template>
 
 <script setup lang="ts">
+import { getCurrentInstance, reactive, ref } from 'vue'
 import { updateUserPwd } from '@/api/system/user'
 
-const { proxy } = getCurrentInstance()
+const { proxy } = getCurrentInstance() as any
 
 const user = reactive({
   oldPassword: undefined,
@@ -42,7 +43,7 @@ const user = reactive({
   confirmPassword: undefined,
 })
 
-const equalToPassword = (rule, value, callback) => {
+const equalToPassword = (rule: any, value: any, callback: any) => {
   if (user.newPassword !== value) {
     callback(new Error('两次输入的密码不一致'))
   } else {
@@ -63,7 +64,7 @@ const rules = ref({
 
 /** 提交按钮 */
 function submit() {
-  proxy.$refs.pwdRef.validate((valid) => {
+  proxy.$refs.pwdRef.validate((valid: any) => {
     if (valid) {
       updateUserPwd(user.oldPassword, user.newPassword).then((response) => {
         proxy.$modal.msgSuccess('修改成功')

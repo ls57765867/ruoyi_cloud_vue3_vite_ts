@@ -160,20 +160,22 @@
 </template>
 
 <script setup lang="ts" name="GenEdit" lang="ts">
+import { getCurrentInstance, ref } from 'vue'
+import { useRoute } from 'vue-router'
 import { getGenTable, updateGenTable } from '@/api/tool/gen'
 import { optionselect as getDictOptionselect } from '@/api/system/dict/type'
-import basicInfoForm from './basicInfoForm'
-import genInfoForm from './genInfoForm'
+import basicInfoForm from './basicInfoForm.vue'
+import genInfoForm from './genInfoForm.vue'
 
 const route = useRoute()
-const { proxy } = getCurrentInstance()
+const { proxy } = getCurrentInstance() as any
 
 const activeName = ref('columnInfo')
 const tableHeight = ref(document.documentElement.scrollHeight - 245 + 'px')
 const tables = ref([])
 const columns = ref([])
-const dictOptions = ref([])
-const info = ref({})
+const dictOptions = ref<any>([])
+const info = ref<any>({})
 
 /** 提交按钮 */
 function submitForm() {
@@ -182,7 +184,7 @@ function submitForm() {
   Promise.all([basicForm, genForm].map(getFormPromise)).then((res) => {
     const validateResult = res.every((item) => !!item)
     if (validateResult) {
-      const genTable = Object.assign({}, info.value)
+      const genTable: any = Object.assign({}, info.value)
       genTable.columns = columns.value
       genTable.params = {
         treeCode: info.value.treeCode,
@@ -190,7 +192,7 @@ function submitForm() {
         treeParentCode: info.value.treeParentCode,
         parentMenuId: info.value.parentMenuId,
       }
-      updateGenTable(genTable).then((res) => {
+      updateGenTable(genTable).then((res: any) => {
         proxy.$modal.msgSuccess(res.msg)
         if (res.code === 200) {
           close()
@@ -201,9 +203,9 @@ function submitForm() {
     }
   })
 }
-function getFormPromise(form) {
-  return new Promise((resolve) => {
-    form.validate((res) => {
+function getFormPromise(form: any) {
+  return new Promise((resolve: any) => {
+    form.validate((res: any) => {
       resolve(res)
     })
   })

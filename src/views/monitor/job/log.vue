@@ -235,26 +235,28 @@
 </template>
 
 <script setup lang="ts" name="JobLog" lang="ts">
+import { ref, getCurrentInstance, reactive, toRefs } from 'vue'
+import { useRoute } from 'vue-router'
 import { getJob } from '@/api/monitor/job'
 import { listJobLog, delJobLog, cleanJobLog } from '@/api/monitor/jobLog'
 
-const { proxy } = getCurrentInstance()
+const { proxy } = getCurrentInstance() as any
 const { sys_common_status, sys_job_group } = proxy.useDict(
   'sys_common_status',
   'sys_job_group'
 )
 
-const jobLogList = ref([])
+const jobLogList = ref<any[]>([])
 const open = ref(false)
 const loading = ref(true)
 const showSearch = ref(true)
 const ids = ref([])
 const multiple = ref(true)
 const total = ref(0)
-const dateRange = ref([])
+const dateRange = ref<any>([])
 const route = useRoute()
 
-const data = reactive({
+const data: any = reactive({
   form: {},
   queryParams: {
     pageNum: 1,
@@ -265,13 +267,13 @@ const data = reactive({
   },
 })
 
-const { queryParams, form, rules } = toRefs(data)
+const { queryParams, form } = toRefs(data)
 
 /** 查询调度日志列表 */
 function getList() {
   loading.value = true
   listJobLog(proxy.addDateRange(queryParams.value, dateRange.value)).then(
-    (response) => {
+    (response: any) => {
       jobLogList.value = response.rows
       total.value = response.total
       loading.value = false
@@ -295,17 +297,17 @@ function resetQuery() {
   handleQuery()
 }
 // 多选框选中数据
-function handleSelectionChange(selection) {
-  ids.value = selection.map((item) => item.jobLogId)
+function handleSelectionChange(selection: any) {
+  ids.value = selection.map((item: any) => item.jobLogId)
   multiple.value = !selection.length
 }
 /** 详细按钮操作 */
-function handleView(row) {
+function handleView(row: any) {
   open.value = true
   form.value = row
 }
 /** 删除按钮操作 */
-function handleDelete(row) {
+function handleDelete(row: any) {
   proxy.$modal
     .confirm('是否确认删除调度日志编号为"' + ids.value + '"的数据项?')
     .then(function () {
@@ -343,7 +345,7 @@ function handleExport() {
 
 ;(() => {
   const jobId = route.params && route.params.jobId
-  if (jobId !== undefined && jobId != 0) {
+  if (jobId !== undefined && jobId != '0') {
     getJob(jobId).then((response) => {
       queryParams.value.jobName = response.data.jobName
       queryParams.value.jobGroup = response.data.jobGroup

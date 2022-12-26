@@ -67,10 +67,12 @@
 </template>
 
 <script setup lang="ts" name="AuthRole" lang="ts">
+import { getCurrentInstance, ref, nextTick } from 'vue'
+import { useRoute } from 'vue-router'
 import { getAuthRole, updateAuthRole } from '@/api/system/user'
 
 const route = useRoute()
-const { proxy } = getCurrentInstance()
+const { proxy } = getCurrentInstance() as any
 
 const loading = ref(true)
 const total = ref(0)
@@ -85,15 +87,15 @@ const form = ref({
 })
 
 /** 单击选中行数据 */
-function clickRow(row) {
+function clickRow(row: any) {
   proxy.$refs['roleRef'].toggleRowSelection(row)
 }
 /** 多选框选中数据 */
-function handleSelectionChange(selection) {
-  roleIds.value = selection.map((item) => item.roleId)
+function handleSelectionChange(selection: any) {
+  roleIds.value = selection.map((item: any) => item.roleId)
 }
 /** 保存选中的数据编号 */
-function getRowKey(row) {
+function getRowKey(row: any) {
   return row.roleId
 }
 /** 关闭按钮 */
@@ -115,12 +117,12 @@ function submitForm() {
   const userId = route.params && route.params.userId
   if (userId) {
     loading.value = true
-    getAuthRole(userId).then((response) => {
+    getAuthRole(userId).then((response: any) => {
       form.value = response.user
       roles.value = response.roles
       total.value = roles.value.length
       nextTick(() => {
-        roles.value.forEach((row) => {
+        roles.value.forEach((row: any) => {
           if (row.flag) {
             proxy.$refs['roleRef'].toggleRowSelection(row)
           }

@@ -40,6 +40,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 let message = computed(() => {
   return '找不到网页！'
 })

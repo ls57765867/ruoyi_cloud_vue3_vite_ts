@@ -212,8 +212,14 @@
       <el-tabs v-model="preview.activeName">
         <el-tab-pane
           v-for="(value, key) in preview.data"
-          :label="key.substring(key.lastIndexOf('/') + 1, key.indexOf('.vm'))"
-          :name="key.substring(key.lastIndexOf('/') + 1, key.indexOf('.vm'))"
+          :label="
+            key +
+            ''.substring(key + ''.lastIndexOf('/') + 1, key + ''.indexOf('.vm'))
+          "
+          :name="
+            key +
+            ''.substring(key + ''.lastIndexOf('/') + 1, key + ''.indexOf('.vm'))
+          "
           :key="value"
         >
           <el-link
@@ -233,6 +239,8 @@
 </template>
 
 <script setup lang="ts" name="Gen">
+import { ref, getCurrentInstance, reactive, toRefs, onActivated } from 'vue'
+import { useRoute } from 'vue-router'
 import {
   listTable,
   previewTable,
@@ -241,10 +249,10 @@ import {
   synchDb,
 } from '@/api/tool/gen'
 import router from '@/router'
-import importTable from './importTable'
+import importTable from './importTable.vue'
 
 const route = useRoute()
-const { proxy } = getCurrentInstance()
+const { proxy } = getCurrentInstance() as any
 
 const tableList = ref([])
 const loading = ref(true)
@@ -254,10 +262,10 @@ const single = ref(true)
 const multiple = ref(true)
 const total = ref(0)
 const tableNames = ref([])
-const dateRange = ref([])
-const uniqueId = ref('')
+const dateRange = ref<any>([])
+const uniqueId = ref<any>('')
 
-const data = reactive({
+const data = reactive<any>({
   queryParams: {
     pageNum: 1,
     pageSize: 10,
@@ -289,7 +297,7 @@ onActivated(() => {
 function getList() {
   loading.value = true
   listTable(proxy.addDateRange(queryParams.value, dateRange.value)).then(
-    (response) => {
+    (response: any) => {
       tableList.value = response.rows
       total.value = response.total
       loading.value = false
@@ -302,14 +310,14 @@ function handleQuery() {
   getList()
 }
 /** 生成代码操作 */
-function handleGenTable(row) {
+function handleGenTable(row: any) {
   const tbNames = row.tableName || tableNames.value
   if (tbNames == '') {
     proxy.$modal.msgError('请选择要生成的数据')
     return
   }
   if (row.genType === '1') {
-    genCode(row.tableName).then((response) => {
+    genCode(row.tableName).then((response: any) => {
       proxy.$modal.msgSuccess('成功生成到自定义路径：' + row.genPath)
     })
   } else {
@@ -317,7 +325,7 @@ function handleGenTable(row) {
   }
 }
 /** 同步数据库操作 */
-function handleSynchDb(row) {
+function handleSynchDb(row: any) {
   const tableName = row.tableName
   proxy.$modal
     .confirm('确认要强制同步"' + tableName + '"表结构吗？')
@@ -340,7 +348,7 @@ function resetQuery() {
   handleQuery()
 }
 /** 预览按钮 */
-function handlePreview(row) {
+function handlePreview(row: any) {
   previewTable(row.tableId).then((response) => {
     preview.value.data = response.data
     preview.value.open = true
@@ -352,14 +360,14 @@ function copyTextSuccess() {
   proxy.$modal.msgSuccess('复制成功')
 }
 // 多选框选中数据
-function handleSelectionChange(selection) {
-  ids.value = selection.map((item) => item.tableId)
-  tableNames.value = selection.map((item) => item.tableName)
+function handleSelectionChange(selection: any) {
+  ids.value = selection.map((item: any) => item.tableId)
+  tableNames.value = selection.map((item: any) => item.tableName)
   single.value = selection.length != 1
   multiple.value = !selection.length
 }
 /** 修改按钮操作 */
-function handleEditTable(row) {
+function handleEditTable(row: any) {
   const tableId = row.tableId || ids.value[0]
   router.push({
     path: '/tool/gen-edit/index/' + tableId,
@@ -367,7 +375,7 @@ function handleEditTable(row) {
   })
 }
 /** 删除按钮操作 */
-function handleDelete(row) {
+function handleDelete(row: any) {
   const tableIds = row.tableId || ids.value
   proxy.$modal
     .confirm('是否确认删除表编号为"' + tableIds + '"的数据项？')

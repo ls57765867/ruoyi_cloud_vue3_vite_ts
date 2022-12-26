@@ -92,11 +92,12 @@
 </template>
 
 <script setup lang="ts" name="Online">
+import { ref, getCurrentInstance } from 'vue'
 import { forceLogout, list as initData } from '@/api/monitor/online'
 
-const { proxy } = getCurrentInstance()
+const { proxy } = getCurrentInstance() as any
 
-const onlineList = ref([])
+const onlineList = ref<any[]>([])
 const loading = ref(true)
 const total = ref(0)
 const pageNum = ref(1)
@@ -110,7 +111,7 @@ const queryParams = ref({
 /** 查询登录日志列表 */
 function getList() {
   loading.value = true
-  initData(queryParams.value).then((response) => {
+  initData(queryParams.value).then((response: any) => {
     onlineList.value = response.rows
     total.value = response.total
     loading.value = false
@@ -127,7 +128,7 @@ function resetQuery() {
   handleQuery()
 }
 /** 强退按钮操作 */
-function handleForceLogout(row) {
+function handleForceLogout(row: any) {
   proxy.$modal
     .confirm('是否确认强退名称为"' + row.userName + '"的用户?')
     .then(function () {

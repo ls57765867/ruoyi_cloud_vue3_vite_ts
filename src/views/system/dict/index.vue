@@ -238,6 +238,8 @@
 </template>
 
 <script setup lang="ts" name="Dict">
+import { reactive, getCurrentInstance, ref, toRefs, nextTick } from 'vue'
+
 import useDictStore from '@/store/modules/dict'
 import {
   listType,
@@ -248,21 +250,21 @@ import {
   refreshCache,
 } from '@/api/system/dict/type'
 
-const { proxy } = getCurrentInstance()
+const { proxy } = getCurrentInstance() as any
 const { sys_normal_disable } = proxy.useDict('sys_normal_disable')
 
-const typeList = ref([])
+const typeList = ref<any[]>([])
 const open = ref(false)
 const loading = ref(true)
 const showSearch = ref(true)
-const ids = ref([])
+const ids = ref<any[]>([])
 const single = ref(true)
 const multiple = ref(true)
 const total = ref(0)
 const title = ref('')
-const dateRange = ref([])
+const dateRange = ref<any>([])
 
-const data = reactive({
+const data: any = reactive({
   form: {},
   queryParams: {
     pageNum: 1,
@@ -287,7 +289,7 @@ const { queryParams, form, rules } = toRefs(data)
 function getList() {
   loading.value = true
   listType(proxy.addDateRange(queryParams.value, dateRange.value)).then(
-    (response) => {
+    (response: any) => {
       typeList.value = response.rows
       total.value = response.total
       loading.value = false
@@ -328,13 +330,13 @@ function handleAdd() {
   title.value = '添加字典类型'
 }
 /** 多选框选中数据 */
-function handleSelectionChange(selection) {
-  ids.value = selection.map((item) => item.dictId)
+function handleSelectionChange(selection: any) {
+  ids.value = selection.map((item: any) => item.dictId)
   single.value = selection.length != 1
   multiple.value = !selection.length
 }
 /** 修改按钮操作 */
-function handleUpdate(row) {
+function handleUpdate(row: any) {
   reset()
   const dictId = row.dictId || ids.value
   getType(dictId).then((response) => {
@@ -345,7 +347,7 @@ function handleUpdate(row) {
 }
 /** 提交按钮 */
 function submitForm() {
-  proxy.$refs['dictRef'].validate((valid) => {
+  proxy.$refs['dictRef'].validate((valid: any) => {
     if (valid) {
       if (form.value.dictId != undefined) {
         updateType(form.value).then((response) => {
@@ -364,7 +366,7 @@ function submitForm() {
   })
 }
 /** 删除按钮操作 */
-function handleDelete(row) {
+function handleDelete(row: any) {
   const dictIds = row.dictId || ids.value
   proxy.$modal
     .confirm('是否确认删除字典编号为"' + dictIds + '"的数据项？')

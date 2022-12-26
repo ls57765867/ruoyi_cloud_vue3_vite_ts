@@ -259,21 +259,19 @@
 </template>
 
 <script setup lang="ts">
+import { ref, getCurrentInstance, watch } from 'vue'
 import { listMenu } from '@/api/system/menu'
 
-const subColumns = ref([])
+const subColumns = ref<any>([])
 const menuOptions = ref([])
-const { proxy } = getCurrentInstance()
-
-const props = defineProps({
-  info: {
-    type: Object,
-    default: null,
-  },
-  tables: {
-    type: Array,
-    default: null,
-  },
+const { proxy } = getCurrentInstance() as any
+interface IProps {
+  info: any
+  tables: any
+}
+const props = withDefaults(defineProps<IProps>(), {
+  info: null,
+  tables: null,
 })
 
 // 表单校验
@@ -292,16 +290,16 @@ const rules = ref({
     { required: true, message: '请输入生成功能名', trigger: 'blur' },
   ],
 })
-function subSelectChange(value) {
+function subSelectChange(value: any) {
   props.info.subTableFkName = ''
 }
-function tplSelectChange(value) {
+function tplSelectChange(value: any) {
   if (value !== 'sub') {
     props.info.subTableName = ''
     props.info.subTableFkName = ''
   }
 }
-function setSubTableColumns(value) {
+function setSubTableColumns(value: any) {
   for (var item in props.tables) {
     const name = props.tables[item].tableName
     if (value === name) {

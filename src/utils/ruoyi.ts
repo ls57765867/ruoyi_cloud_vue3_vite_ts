@@ -53,7 +53,7 @@ export function parseTime(time: any, pattern: any) {
 }
 
 // 表单重置
-export function resetForm(refName: any) {
+export function resetForm(this: any, refName: any) {
   if (this.$refs[refName]) {
     this.$refs[refName].resetFields()
   }

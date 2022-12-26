@@ -91,11 +91,13 @@
 </template>
 
 <script setup lang="ts">
+import { ref, getCurrentInstance } from 'vue'
+import { useRouter } from 'vue-router'
 import { ElMessageBox } from 'element-plus'
 import { getCodeImg, register } from '@/api/login'
 
 const router = useRouter()
-const { proxy } = getCurrentInstance()
+const { proxy } = getCurrentInstance() as any
 
 const registerForm = ref({
   username: '',
@@ -105,7 +107,11 @@ const registerForm = ref({
   uuid: '',
 })
 
-const equalToPassword = (rule, value, callback) => {
+const equalToPassword = (
+  rule: any,
+  value: any,
+  callback: (err?: any) => {}
+) => {
   if (registerForm.value.password !== value) {
     callback(new Error('两次输入的密码不一致'))
   } else {
@@ -113,7 +119,7 @@ const equalToPassword = (rule, value, callback) => {
   }
 }
 
-const registerRules = {
+const registerRules: any = {
   username: [
     { required: true, trigger: 'blur', message: '请输入您的账号' },
     {
@@ -144,7 +150,7 @@ const loading = ref(false)
 const captchaEnabled = ref(true)
 
 function handleRegister() {
-  proxy.$refs.registerRef.validate((valid) => {
+  proxy.$refs.registerRef.validate((valid: any) => {
     if (valid) {
       loading.value = true
       register(registerForm.value)
@@ -176,7 +182,7 @@ function handleRegister() {
 }
 
 function getCode() {
-  getCodeImg().then((res) => {
+  getCodeImg().then((res: any) => {
     captchaEnabled.value =
       res.captchaEnabled === undefined ? true : res.captchaEnabled
     if (captchaEnabled.value) {

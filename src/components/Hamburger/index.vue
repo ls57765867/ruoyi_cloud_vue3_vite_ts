@@ -16,6 +16,7 @@
 </template>
 
 <script setup lang="ts">
+import { defineEmits } from 'vue'
 defineProps({
   isActive: {
     type: Boolean,
@@ -23,7 +24,7 @@ defineProps({
   },
 })
 
-const emit = defineEmits() as any
+const emit = defineEmits(['toggleClick'])
 const toggleClick = () => {
   emit('toggleClick')
 }

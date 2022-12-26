@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, defineEmits } from 'vue'
 import icons from './requireIcons'
 
 const iconName = ref('')

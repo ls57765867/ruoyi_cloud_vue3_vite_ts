@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, getCurrentInstance, computed, watch } from 'vue'
+import { computed, defineEmits } from 'vue'
 import { scrollTo } from '@/utils/scroll-to'
 interface IProps {
   total: number
@@ -63,13 +63,13 @@ function handleSizeChange(val: any) {
   }
   emit('pagination', { page: currentPage.value, limit: val })
   if (props.autoScroll) {
-    scrollTo(0, 800)
+    scrollTo(0, 800, () => {})
   }
 }
 function handleCurrentChange(val: number) {
   emit('pagination', { page: val, limit: pageSize.value })
   if (props.autoScroll) {
-    scrollTo(0, 800)
+    scrollTo(0, 800, () => {})
   }
 }
 </script>

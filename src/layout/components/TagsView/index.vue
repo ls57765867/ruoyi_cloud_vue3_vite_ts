@@ -10,7 +10,7 @@
         :key="tag.path"
         :data-path="tag.path"
         :class="isActive(tag) ? 'active' : ''"
-        :to="{ path: tag.path, query: tag.query, fullPath: tag.fullPath }"
+        :to="{ path: tag.path, query: tag.query }"
         class="tags-view-item"
         :style="activeStyle(tag)"
         @click.middle="!isAffix(tag) ? closeSelectedTag(tag) : ''"
@@ -53,7 +53,16 @@
 </template>
 
 <script setup lang="ts">
-import ScrollPane from './ScrollPane'
+import {
+  ref,
+  getCurrentInstance,
+  computed,
+  watch,
+  onMounted,
+  nextTick,
+} from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import ScrollPane from './ScrollPane.vue'
 import { getNormalPath } from '@/utils/ruoyi'
 import useTagsViewStore from '@/store/modules/tagsView'
 import useSettingsStore from '@/store/modules/settings'
@@ -62,11 +71,11 @@ import usePermissionStore from '@/store/modules/permission'
 const visible = ref(false)
 const top = ref(0)
 const left = ref(0)
-const selectedTag = ref({})
-const affixTags = ref([])
-const scrollPaneRef = ref(null)
+const selectedTag = ref<any>({})
+const affixTags = ref<any>([])
+const scrollPaneRef = ref<any>(null)
 
-const { proxy } = getCurrentInstance()
+const { proxy } = getCurrentInstance() as any
 const route = useRoute()
 const router = useRouter()
 
@@ -90,17 +99,17 @@ onMounted(() => {
   addTags()
 })
 
-function isActive(r) {
+function isActive(r: any) {
   return r.path === route.path
 }
-function activeStyle(tag) {
+function activeStyle(tag: any) {
   if (!isActive(tag)) return {}
   return {
     'background-color': theme.value,
     'border-color': theme.value,
   }
 }
-function isAffix(tag) {
+function isAffix(tag: any) {
   return tag.meta && tag.meta.affix
 }
 function isFirstView() {
@@ -123,9 +132,9 @@ function isLastView() {
     return false
   }
 }
-function filterAffixTags(routes, basePath = '') {
-  let tags = []
-  routes.forEach((route) => {
+function filterAffixTags(routes: any, basePath = '') {
+  let tags: any = []
+  routes.forEach((route: any) => {
     if (route.meta && route.meta.affix) {
       const tagPath = getNormalPath(basePath + '/' + route.path)
       tags.push({
@@ -177,29 +186,29 @@ function moveToCurrentTag() {
     }
   })
 }
-function refreshSelectedTag(view) {
+function refreshSelectedTag(view: any) {
   proxy.$tab.refreshPage(view)
   if (route.meta.link) {
     useTagsViewStore().delIframeView(route)
   }
 }
-function closeSelectedTag(view) {
-  proxy.$tab.closePage(view).then(({ visitedViews }) => {
+function closeSelectedTag(view: any) {
+  proxy.$tab.closePage(view).then(({ visitedViews }: any) => {
     if (isActive(view)) {
       toLastView(visitedViews, view)
     }
   })
 }
 function closeRightTags() {
-  proxy.$tab.closeRightPage(selectedTag.value).then((visitedViews) => {
-    if (!visitedViews.find((i) => i.fullPath === route.fullPath)) {
+  proxy.$tab.closeRightPage(selectedTag.value).then((visitedViews: any) => {
+    if (!visitedViews.find((i: any) => i.fullPath === route.fullPath)) {
       toLastView(visitedViews)
     }
   })
 }
 function closeLeftTags() {
-  proxy.$tab.closeLeftPage(selectedTag.value).then((visitedViews) => {
-    if (!visitedViews.find((i) => i.fullPath === route.fullPath)) {
+  proxy.$tab.closeLeftPage(selectedTag.value).then((visitedViews: any) => {
+    if (!visitedViews.find((i: any) => i.fullPath === route.fullPath)) {
       toLastView(visitedViews)
     }
   })
@@ -210,15 +219,15 @@ function closeOthersTags() {
     moveToCurrentTag()
   })
 }
-function closeAllTags(view) {
-  proxy.$tab.closeAllPage().then(({ visitedViews }) => {
-    if (affixTags.value.some((tag) => tag.path === route.path)) {
+function closeAllTags(view: any) {
+  proxy.$tab.closeAllPage().then(({ visitedViews }: any) => {
+    if (affixTags.value.some((tag: any) => tag.path === route.path)) {
       return
     }
     toLastView(visitedViews, view)
   })
 }
-function toLastView(visitedViews, view) {
+function toLastView(visitedViews?: any, view?: any) {
   const latestView = visitedViews.slice(-1)[0]
   if (latestView) {
     router.push(latestView.fullPath)
@@ -233,7 +242,7 @@ function toLastView(visitedViews, view) {
     }
   }
 }
-function openMenu(tag, e) {
+function openMenu(tag: any, e: any) {
   const menuMinWidth = 105
   const offsetLeft = proxy.$el.getBoundingClientRect().left // container margin left
   const offsetWidth = proxy.$el.offsetWidth // container width

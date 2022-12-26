@@ -46,7 +46,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, getCurrentInstance, computed, watch } from 'vue'
+import { ref, getCurrentInstance, computed, watch, defineEmits } from 'vue'
 import { getToken } from '@/utils/auth'
 interface IProps {
   modelValue: String | any[] | any

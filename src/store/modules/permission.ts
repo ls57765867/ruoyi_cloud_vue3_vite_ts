@@ -31,7 +31,7 @@ const usePermissionStore = defineStore('permission', {
     setSidebarRouters(routes: RouteRecordRaw[]) {
       this.sidebarRouters = routes
     },
-    generateRoutes(roles: any) {
+    generateRoutes(roles?: any) {
       return new Promise((resolve) => {
         // 向后端请求路由数据
         getRouters().then((res) => {

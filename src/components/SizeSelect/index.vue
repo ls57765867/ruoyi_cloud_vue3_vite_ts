@@ -21,21 +21,21 @@
 </template>
 
 <script setup lang="ts">
+import { computed, ref, getCurrentInstance } from 'vue'
 import useAppStore from '@/store/modules/app'
+import { TSize } from '@/store/modules/type'
 
 const appStore = useAppStore()
 const size = computed(() => appStore.size)
-const route = useRoute()
-const router = useRouter()
-const { proxy } = getCurrentInstance()
+const { proxy } = getCurrentInstance() as any
 const sizeOptions = ref([
-  { label: '�ϴ�', value: 'large' },
-  { label: 'Ĭ��', value: 'default' },
-  { label: '��С', value: 'small' },
+  { label: '大', value: 'large' },
+  { label: '默认', value: 'default' },
+  { label: '小', value: 'small' },
 ])
 
-function handleSetSize(size) {
-  proxy.$modal.loading('�������ò��ִ�С�����Ժ�...')
+function handleSetSize(size: TSize) {
+  proxy.$modal.loading('正在切换请稍后...')
   appStore.setSize(size)
   setTimeout('window.location.reload()', 1000)
 }

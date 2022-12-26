@@ -5,14 +5,18 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { isExternal } from '@/utils/validate'
-
-const props = defineProps({
-  to: {
-    type: [String, Object],
-    required: true,
-  },
-})
+interface IProps {
+  to: any
+}
+const props = defineProps<IProps>()
+// const props = defineProps({
+//   to: {
+//     type: [String, Object],
+//     required: true,
+//   },
+// })
 
 const isExt = computed(() => {
   return isExternal(props.to)

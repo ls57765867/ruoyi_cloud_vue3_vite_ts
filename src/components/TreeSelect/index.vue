@@ -29,7 +29,15 @@
 </template>
 
 <script setup lang="ts">
-const { proxy } = getCurrentInstance()
+import {
+  watch,
+  getCurrentInstance,
+  computed,
+  ref,
+  nextTick,
+  onMounted,
+} from 'vue'
+const { proxy } = getCurrentInstance() as any
 
 const props = defineProps({
   /* 配置项 */
@@ -76,7 +84,7 @@ const valueId = computed({
   },
 })
 const valueTitle = ref('')
-const defaultExpandedKey = ref([])
+const defaultExpandedKey = ref<any[]>([])
 
 function initHandle() {
   nextTick(() => {
@@ -93,17 +101,17 @@ function initHandle() {
     }
   })
 }
-function handleNodeClick(node) {
+function handleNodeClick(node: any) {
   valueTitle.value = node[props.objMap.label]
   valueId.value = node[props.objMap.value]
   defaultExpandedKey.value = []
   proxy.$refs.treeSelect.blur()
   selectFilterData('')
 }
-function selectFilterData(val) {
+function selectFilterData(val: any) {
   proxy.$refs.selectTree.filter(val)
 }
-function filterNode(value, data) {
+function filterNode(value: any, data: any) {
   if (!value) return true
   return data[props.objMap['label']].indexOf(value) !== -1
 }

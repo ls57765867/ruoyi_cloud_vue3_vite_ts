@@ -37,6 +37,8 @@
 </template>
 
 <script setup lang="ts">
+import { computed, ref, onBeforeUnmount, onMounted } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { constantRoutes } from '@/router'
 import { isHttp } from '@/utils/validate'
 import useAppStore from '@/store/modules/app'
@@ -44,7 +46,7 @@ import useSettingsStore from '@/store/modules/settings'
 import usePermissionStore from '@/store/modules/permission'
 
 // 顶部栏初始数
-const visibleNumber = ref(null)
+const visibleNumber = ref<number>(0)
 // 当前激活菜单的 index
 const currentIndex = ref(null)
 // 隐藏侧边栏路由
@@ -53,8 +55,8 @@ const hideList = ['/index', '/user/profile']
 const appStore = useAppStore()
 const settingsStore = useSettingsStore()
 const permissionStore = usePermissionStore()
-const route = useRoute()
-const router = useRouter()
+const route = useRoute() as any
+const router = useRouter() as any
 
 // 主题颜色
 const theme = computed(() => settingsStore.theme)
@@ -63,12 +65,14 @@ const routers = computed(() => permissionStore.topbarRouters)
 
 // 顶部显示菜单
 const topMenus = computed(() => {
-  let topMenus = []
+  let topMenus: any[] = []
   routers.value.map((menu) => {
     if (menu.hidden !== true) {
       // 兼容顶部栏一级菜单内部跳转
       if (menu.path === '/') {
-        topMenus.push(menu.children[0])
+        if (menu.children) {
+          topMenus.push(menu.children[0])
+        }
       } else {
         topMenus.push(menu)
       }
@@ -79,7 +83,7 @@ const topMenus = computed(() => {
 
 // 设置子路由
 const childrenMenus = computed(() => {
-  let childrenMenus = []
+  let childrenMenus: any[] = []
   routers.value.map((router) => {
     for (let item in router.children) {
       if (router.children[item].parentPath === undefined) {
@@ -123,10 +127,10 @@ const activeMenu = computed(() => {
 
 function setVisibleNumber() {
   const width = document.body.getBoundingClientRect().width / 3
-  visibleNumber.value = parseInt(width / 85)
+  visibleNumber.value = width / 85
 }
 
-function handleSelect(key, keyPath) {
+function handleSelect(key: any, keyPath: any) {
   currentIndex.value = key
   const route = routers.value.find((item) => item.path === key)
   if (isHttp(key)) {
@@ -143,10 +147,10 @@ function handleSelect(key, keyPath) {
   }
 }
 
-function activeRoutes(key) {
-  let routes = []
+function activeRoutes(key: any) {
+  let routes: any[] = []
   if (childrenMenus.value && childrenMenus.value.length > 0) {
-    childrenMenus.value.map((item) => {
+    childrenMenus.value.map((item: any) => {
       if (key == item.parentPath || (key == 'index' && '' == item.path)) {
         routes.push(item)
       }

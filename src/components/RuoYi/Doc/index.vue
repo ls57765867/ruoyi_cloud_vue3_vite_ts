@@ -5,6 +5,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 const url = ref('http://doc.ruoyi.vip/ruoyi-cloud')
 
 function goto() {

@@ -5,6 +5,8 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+
 const url = ref('https://gitee.com/y_project/RuoYi-Cloud')
 
 function goto() {

@@ -40,8 +40,10 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import Logo from './Logo.vue'
-import SidebarItem from './SidebarItem'
+import SidebarItem from './SidebarItem.vue'
 import variables from '@/assets/styles/variables.module.scss'
 import useAppStore from '@/store/modules/app'
 import useSettingsStore from '@/store/modules/settings'
@@ -58,7 +60,7 @@ const sideTheme = computed(() => settingsStore.sideTheme)
 const theme = computed(() => settingsStore.theme)
 const isCollapse = computed(() => !appStore.sidebar.opened)
 
-const activeMenu = computed(() => {
+const activeMenu: any = computed(() => {
   const { meta, path } = route
   // if set path, the sidebar will highlight the path you set
   if (meta.activeMenu) {

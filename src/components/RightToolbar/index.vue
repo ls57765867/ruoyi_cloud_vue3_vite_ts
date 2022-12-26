@@ -35,35 +35,48 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  showSearch: {
-    type: Boolean,
-    default: true,
-  },
-  columns: {
-    type: Array,
-  },
-  search: {
-    type: Boolean,
-    default: true,
-  },
-  gutter: {
-    type: Number,
-    default: 10,
-  },
+import { ref, computed } from 'vue'
+
+interface IProps {
+  showSearch: boolean
+  columns: any[]
+  search: boolean
+  gutter: number
+}
+const props = withDefaults(defineProps<IProps>(), {
+  showSearch: true,
+  search: true,
+  gutter: 10,
 })
+// const props = defineProps({
+//   showSearch: {
+//     type: Boolean,
+//     default: true,
+//   },
+//   columns: {
+//     type: Array,
+//   },
+//   search: {
+//     type: Boolean,
+//     default: true,
+//   },
+//   gutter: {
+//     type: Number,
+//     default: 10,
+//   },
+// })
 
 const emits = defineEmits(['update:showSearch', 'queryTable'])
 
 // 显隐数据
-const value = ref([])
+const value = ref<any[]>([])
 // 弹出层标题
 const title = ref('显示/隐藏')
 // 是否显示弹出层
 const open = ref(false)
 
 const style = computed(() => {
-  const ret = {}
+  const ret: any = {}
   if (props.gutter) {
     ret.marginRight = `${props.gutter / 2}px`
   }
@@ -81,7 +94,7 @@ function refresh() {
 }
 
 // 右侧列表元素变化
-function dataChange(data) {
+function dataChange(data: any) {
   for (let item in props.columns) {
     const key = props.columns[item].key
     props.columns[item].visible = !data.includes(key)

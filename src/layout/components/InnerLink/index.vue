@@ -21,6 +21,5 @@ defineProps({
   },
 })
 
-const height =
-  ref < string > document.documentElement.clientHeight - 94.5 + 'px'
+const height = ref<string>(document.documentElement.clientHeight - 94.5 + 'px')
 </script>

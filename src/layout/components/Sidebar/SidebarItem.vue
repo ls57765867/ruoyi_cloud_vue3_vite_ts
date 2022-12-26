@@ -57,8 +57,9 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { isExternal } from '@/utils/validate'
-import AppLink from './Link'
+import AppLink from './Link.vue'
 import { getNormalPath } from '@/utils/ruoyi'
 
 const props = defineProps({
@@ -77,9 +78,9 @@ const props = defineProps({
   },
 })
 
-const onlyOneChild = ref({})
+const onlyOneChild = ref<any>({})
 
-function hasOneShowingChild(children = [], parent) {
+function hasOneShowingChild(children: any[] = [], parent: any) {
   if (!children) {
     children = []
   }
@@ -107,7 +108,7 @@ function hasOneShowingChild(children = [], parent) {
   return false
 }
 
-function resolvePath(routePath, routeQuery) {
+function resolvePath(routePath: any, routeQuery?: any) {
   if (isExternal(routePath)) {
     return routePath
   }
@@ -124,7 +125,7 @@ function resolvePath(routePath, routeQuery) {
   return getNormalPath(props.basePath + '/' + routePath)
 }
 
-function hasTitle(title) {
+function hasTitle(title: any) {
   if (title.length > 5) {
     return title
   } else {

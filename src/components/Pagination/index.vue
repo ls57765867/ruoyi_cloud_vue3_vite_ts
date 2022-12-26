@@ -17,47 +17,27 @@
 <script setup lang="ts">
 import { ref, getCurrentInstance, computed, watch } from 'vue'
 import { scrollTo } from '@/utils/scroll-to'
+interface IProps {
+  total: number
+  page: number
+  limit: number
+  pageSizes: number[]
+  pagerCount: number
+  layout: string
+  background: boolean
+  autoScroll: boolean
+  hidden: boolean
+}
 
-const props = defineProps({
-  total: {
-    required: true,
-    type: Number,
-  },
-  page: {
-    type: Number,
-    default: 1,
-  },
-  limit: {
-    type: Number,
-    default: 20,
-  },
-  pageSizes: {
-    type: Array,
-    default() {
-      return [10, 20, 30, 50]
-    },
-  },
-  // 移动端页码按钮的数量端默认值5
-  pagerCount: {
-    type: Number,
-    default: document.body.clientWidth < 992 ? 5 : 7,
-  },
-  layout: {
-    type: String,
-    default: 'total, sizes, prev, pager, next, jumper',
-  },
-  background: {
-    type: Boolean,
-    default: true,
-  },
-  autoScroll: {
-    type: Boolean,
-    default: true,
-  },
-  hidden: {
-    type: Boolean,
-    default: false,
-  },
+const props = withDefaults(defineProps<IProps>(), {
+  page: 1,
+  limit: 20,
+  pageSizes: () => [10, 20, 30, 50],
+  pagerCount: document.body.clientWidth < 992 ? 5 : 7,
+  layout: 'total, sizes, prev, pager, next, jumper',
+  background: true,
+  autoScroll: true,
+  hidden: false,
 })
 
 const emit = defineEmits() as any
@@ -86,7 +66,7 @@ function handleSizeChange(val: any) {
     scrollTo(0, 800)
   }
 }
-function handleCurrentChange(val) {
+function handleCurrentChange(val: number) {
   emit('pagination', { page: val, limit: pageSize.value })
   if (props.autoScroll) {
     scrollTo(0, 800)

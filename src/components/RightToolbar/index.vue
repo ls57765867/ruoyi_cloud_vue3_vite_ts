@@ -48,23 +48,6 @@ const props = withDefaults(defineProps<IProps>(), {
   search: true,
   gutter: 10
 })
-// const props = defineProps({
-//   showSearch: {
-//     type: Boolean,
-//     default: true,
-//   },
-//   columns: {
-//     type: Array,
-//   },
-//   search: {
-//     type: Boolean,
-//     default: true,
-//   },
-//   gutter: {
-//     type: Number,
-//     default: 10,
-//   },
-// })
 
 const emits = defineEmits(['update:showSearch', 'queryTable'])
 

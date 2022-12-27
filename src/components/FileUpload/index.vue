@@ -77,7 +77,7 @@ const props = withDefaults(defineProps<IProps>(), {
 })
 
 const { proxy } = getCurrentInstance() as any
-const emit = defineEmits() as any
+const emit = defineEmits(['update:modelValue']) as any
 const number = ref(0)
 const uploadList = ref<any[]>([])
 const uploadFileUrl = ref(import.meta.env.VITE_APP_BASE_API + '/file/upload') // 上传文件服务器地址

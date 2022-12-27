@@ -19,14 +19,14 @@ import { computed, defineEmits } from 'vue'
 import { scrollTo } from '@/utils/scroll-to'
 interface IProps {
   total: number
-  page: number
-  limit: number
-  pageSizes: number[]
-  pagerCount: number
-  layout: string
-  background: boolean
-  autoScroll: boolean
-  hidden: boolean
+  page?: number
+  limit?: number
+  pageSizes?: number[]
+  pagerCount?: number
+  layout?: string
+  background?: boolean
+  autoScroll?: boolean
+  hidden?: boolean
 }
 
 const props = withDefaults(defineProps<IProps>(), {
@@ -40,7 +40,7 @@ const props = withDefaults(defineProps<IProps>(), {
   hidden: false,
 })
 
-const emit = defineEmits() as any
+const emit = defineEmits(['update:page', 'pagination', 'update:limit'])
 const currentPage = computed({
   get() {
     return props.page

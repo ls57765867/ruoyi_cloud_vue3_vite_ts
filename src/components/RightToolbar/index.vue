@@ -38,10 +38,10 @@
 import { ref, computed, defineEmits } from 'vue'
 
 interface IProps {
-  showSearch: boolean
-  columns: any[]
-  search: boolean
-  gutter: number
+  showSearch?: boolean
+  columns?: any[]
+  search?: boolean
+  gutter?: number
 }
 const props = withDefaults(defineProps<IProps>(), {
   showSearch: true,

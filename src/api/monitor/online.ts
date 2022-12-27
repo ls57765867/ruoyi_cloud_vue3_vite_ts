@@ -5,7 +5,7 @@ export function list(query: any) {
   return request({
     url: '/system/online/list',
     method: 'get',
-    params: query,
+    params: query
   })
 }
 
@@ -13,6 +13,6 @@ export function list(query: any) {
 export function forceLogout(tokenId: any) {
   return request({
     url: '/system/online/' + tokenId,
-    method: 'delete',
+    method: 'delete'
   })
 }

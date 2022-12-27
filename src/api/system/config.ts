@@ -5,7 +5,7 @@ export function listConfig(query: any) {
   return request({
     url: '/system/config/list',
     method: 'get',
-    params: query,
+    params: query
   })
 }
 
@@ -13,7 +13,7 @@ export function listConfig(query: any) {
 export function getConfig(configId: any) {
   return request({
     url: '/system/config/' + configId,
-    method: 'get',
+    method: 'get'
   })
 }
 
@@ -21,7 +21,7 @@ export function getConfig(configId: any) {
 export function getConfigKey(configKey: any) {
   return request({
     url: '/system/config/configKey/' + configKey,
-    method: 'get',
+    method: 'get'
   })
 }
 
@@ -30,7 +30,7 @@ export function addConfig(data: any) {
   return request({
     url: '/system/config',
     method: 'post',
-    data: data,
+    data: data
   })
 }
 
@@ -39,7 +39,7 @@ export function updateConfig(data: any) {
   return request({
     url: '/system/config',
     method: 'put',
-    data: data,
+    data: data
   })
 }
 
@@ -47,7 +47,7 @@ export function updateConfig(data: any) {
 export function delConfig(configId: any) {
   return request({
     url: '/system/config/' + configId,
-    method: 'delete',
+    method: 'delete'
   })
 }
 
@@ -55,6 +55,6 @@ export function delConfig(configId: any) {
 export function refreshCache() {
   return request({
     url: '/system/config/refreshCache',
-    method: 'delete',
+    method: 'delete'
   })
 }

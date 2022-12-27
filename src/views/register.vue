@@ -104,7 +104,7 @@ const registerForm = ref({
   password: '',
   confirmPassword: '',
   code: '',
-  uuid: '',
+  uuid: ''
 })
 
 const equalToPassword = (
@@ -126,8 +126,8 @@ const registerRules: any = {
       min: 2,
       max: 20,
       message: '用户账号长度必须介于 2 和 20 之间',
-      trigger: 'blur',
-    },
+      trigger: 'blur'
+    }
   ],
   password: [
     { required: true, trigger: 'blur', message: '请输入您的密码' },
@@ -135,14 +135,14 @@ const registerRules: any = {
       min: 5,
       max: 20,
       message: '用户密码长度必须介于 5 和 20 之间',
-      trigger: 'blur',
-    },
+      trigger: 'blur'
+    }
   ],
   confirmPassword: [
     { required: true, trigger: 'blur', message: '请再次输入您的密码' },
-    { required: true, validator: equalToPassword, trigger: 'blur' },
+    { required: true, validator: equalToPassword, trigger: 'blur' }
   ],
-  code: [{ required: true, trigger: 'change', message: '请输入验证码' }],
+  code: [{ required: true, trigger: 'change', message: '请输入验证码' }]
 }
 
 const codeUrl = ref('')
@@ -163,7 +163,7 @@ function handleRegister() {
             '系统提示',
             {
               dangerouslyUseHTMLString: true,
-              type: 'success',
+              type: 'success'
             }
           )
             .then(() => {

@@ -14,11 +14,11 @@ import { ref } from 'vue'
 defineProps({
   src: {
     type: String,
-    default: '/',
+    default: '/'
   },
   iframeId: {
-    type: String,
-  },
+    type: String
+  }
 })
 
 const height = ref<string>(document.documentElement.clientHeight - 94.5 + 'px')

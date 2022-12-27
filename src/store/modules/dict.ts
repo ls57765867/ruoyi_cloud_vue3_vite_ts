@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 const useDictStore = defineStore('dict', {
   state: () => ({
-    dict: new Array(),
+    dict: new Array()
   }),
   actions: {
     // 获取字典
@@ -24,7 +24,7 @@ const useDictStore = defineStore('dict', {
       if (_key !== null && _key !== '') {
         this.dict.push({
           key: _key,
-          value: value,
+          value: value
         })
       }
     },
@@ -48,8 +48,8 @@ const useDictStore = defineStore('dict', {
       this.dict = new Array()
     },
     // 初始字典
-    initDict() {},
-  },
+    initDict() {}
+  }
 })
 
 export default useDictStore

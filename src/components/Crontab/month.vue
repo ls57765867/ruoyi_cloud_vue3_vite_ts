@@ -58,13 +58,13 @@ const props = defineProps({
       day: '*',
       month: '*',
       week: '?',
-      year: '',
-    },
+      year: ''
+    }
   },
   check: {
     type: Function,
-    default: () => {},
-  },
+    default: () => {}
+  }
 })
 const radioValue = ref(1)
 const cycle01 = ref(1)
@@ -85,7 +85,7 @@ const monthList = ref([
   { key: 9, value: '九月' },
   { key: 10, value: '十月' },
   { key: 11, value: '十一月' },
-  { key: 12, value: '十二月' },
+  { key: 12, value: '十二月' }
 ])
 const cycleTotal = computed(() => {
   cycle01.value = props.check(cycle01.value, 1, 11)
@@ -122,7 +122,7 @@ function changeRadioValue(value: string) {
     radioValue.value = 3
   } else {
     checkboxList.value = [
-      ...new Set(value.split(',').map((item) => Number(item))),
+      ...new Set(value.split(',').map((item) => Number(item)))
     ]
     radioValue.value = 4
   }

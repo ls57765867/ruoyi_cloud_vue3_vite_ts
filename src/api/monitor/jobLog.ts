@@ -5,7 +5,7 @@ export function listJobLog(query: any) {
   return request({
     url: '/schedule/job/log/list',
     method: 'get',
-    params: query,
+    params: query
   })
 }
 
@@ -13,7 +13,7 @@ export function listJobLog(query: any) {
 export function delJobLog(jobLogId: any) {
   return request({
     url: '/schedule/job/log/' + jobLogId,
-    method: 'delete',
+    method: 'delete'
   })
 }
 
@@ -21,6 +21,6 @@ export function delJobLog(jobLogId: any) {
 export function cleanJobLog() {
   return request({
     url: '/schedule/job/log/clean',
-    method: 'delete',
+    method: 'delete'
   })
 }

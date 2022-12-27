@@ -18,7 +18,7 @@ export function useDict(...args: any) {
             label: p.dictLabel,
             value: p.dictValue,
             elTagType: p.listClass,
-            elTagClass: p.cssClass,
+            elTagClass: p.cssClass
           }))
           useDictStore().setDict(dictType, res.value[dictType])
         })

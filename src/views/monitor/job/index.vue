@@ -405,7 +405,7 @@ import {
   addJob,
   updateJob,
   runJob,
-  changeJobStatus,
+  changeJobStatus
 } from '@/api/monitor/job'
 import Crontab from '@/components/Crontab/index.vue'
 const router = useRouter()
@@ -435,17 +435,17 @@ const data: any = reactive({
     pageSize: 10,
     jobName: undefined,
     jobGroup: undefined,
-    status: undefined,
+    status: undefined
   },
   rules: {
     jobName: [{ required: true, message: '任务名称不能为空', trigger: 'blur' }],
     invokeTarget: [
-      { required: true, message: '调用目标字符串不能为空', trigger: 'blur' },
+      { required: true, message: '调用目标字符串不能为空', trigger: 'blur' }
     ],
     cronExpression: [
-      { required: true, message: 'cron执行表达式不能为空', trigger: 'change' },
-    ],
-  },
+      { required: true, message: 'cron执行表达式不能为空', trigger: 'change' }
+    ]
+  }
 })
 
 const { queryParams, form, rules } = toRefs(data)
@@ -478,7 +478,7 @@ function reset() {
     cronExpression: undefined,
     misfirePolicy: 1,
     concurrent: 1,
-    status: '0',
+    status: '0'
   }
   proxy.resetForm('jobRef')
 }
@@ -617,7 +617,7 @@ function handleExport() {
   proxy.download(
     'schedule/job/export',
     {
-      ...queryParams.value,
+      ...queryParams.value
     },
     `job_${new Date().getTime()}.xlsx`
   )

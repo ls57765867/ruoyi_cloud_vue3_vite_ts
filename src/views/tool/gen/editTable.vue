@@ -190,7 +190,7 @@ function submitForm() {
         treeCode: info.value.treeCode,
         treeName: info.value.treeName,
         treeParentCode: info.value.treeParentCode,
-        parentMenuId: info.value.parentMenuId,
+        parentMenuId: info.value.parentMenuId
       }
       updateGenTable(genTable).then((res: any) => {
         proxy.$modal.msgSuccess(res.msg)
@@ -213,7 +213,7 @@ function getFormPromise(form: any) {
 function close() {
   const obj = {
     path: '/tool/gen',
-    query: { t: Date.now(), pageNum: route.query.pageNum },
+    query: { t: Date.now(), pageNum: route.query.pageNum }
   }
   proxy.$tab.closeOpenPage(obj)
 }

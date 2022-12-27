@@ -19,16 +19,16 @@ import { computed } from 'vue'
 const props = defineProps({
   src: {
     type: String,
-    default: '',
+    default: ''
   },
   width: {
     type: [Number, String],
-    default: '',
+    default: ''
   },
   height: {
     type: [Number, String],
-    default: '',
-  },
+    default: ''
+  }
 })
 
 const realSrc = computed(() => {

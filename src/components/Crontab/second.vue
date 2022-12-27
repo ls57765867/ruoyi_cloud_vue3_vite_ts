@@ -58,13 +58,13 @@ const props = defineProps({
       day: '*',
       month: '*',
       week: '?',
-      year: '',
-    },
+      year: ''
+    }
   },
   check: {
     type: Function,
-    default: () => {},
-  },
+    default: () => {}
+  }
 })
 const radioValue = ref(1)
 const cycle01 = ref(0)
@@ -108,7 +108,7 @@ function changeRadioValue(value: any) {
     radioValue.value = 3
   } else {
     checkboxList.value = [
-      ...new Set(value.split(',').map((item: any) => Number(item))),
+      ...new Set(value.split(',').map((item: any) => Number(item)))
     ]
     radioValue.value = 4
   }

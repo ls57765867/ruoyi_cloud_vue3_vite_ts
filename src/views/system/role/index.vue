@@ -366,11 +366,11 @@ import {
   getRole,
   listRole,
   updateRole,
-  deptTreeSelect,
+  deptTreeSelect
 } from '@/api/system/role'
 import {
   roleMenuTreeselect,
-  treeselect as menuTreeselect,
+  treeselect as menuTreeselect
 } from '@/api/system/menu'
 
 const router = useRouter()
@@ -403,7 +403,7 @@ const dataScopeOptions = ref([
   { value: '2', label: '自定数据权限' },
   { value: '3', label: '本部门数据权限' },
   { value: '4', label: '本部门及以下数据权限' },
-  { value: '5', label: '仅本人数据权限' },
+  { value: '5', label: '仅本人数据权限' }
 ])
 
 const data: any = reactive({
@@ -413,17 +413,15 @@ const data: any = reactive({
     pageSize: 10,
     roleName: undefined,
     roleKey: undefined,
-    status: undefined,
+    status: undefined
   },
   rules: {
     roleName: [
-      { required: true, message: '角色名称不能为空', trigger: 'blur' },
+      { required: true, message: '角色名称不能为空', trigger: 'blur' }
     ],
     roleKey: [{ required: true, message: '权限字符不能为空', trigger: 'blur' }],
-    roleSort: [
-      { required: true, message: '角色顺序不能为空', trigger: 'blur' },
-    ],
-  },
+    roleSort: [{ required: true, message: '角色顺序不能为空', trigger: 'blur' }]
+  }
 })
 
 const { queryParams, form, rules } = toRefs(data)
@@ -469,7 +467,7 @@ function handleExport() {
   proxy.download(
     'system/role/export',
     {
-      ...queryParams.value,
+      ...queryParams.value
     },
     `role_${new Date().getTime()}.xlsx`
   )
@@ -546,7 +544,7 @@ function reset() {
     deptIds: [],
     menuCheckStrictly: true,
     deptCheckStrictly: true,
-    remark: undefined,
+    remark: undefined
   }
   proxy.resetForm('roleRef')
 }

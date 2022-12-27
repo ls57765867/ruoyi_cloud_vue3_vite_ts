@@ -5,10 +5,10 @@ export function login(username: any, password: any, code: any, uuid: any) {
   return request({
     url: '/auth/login',
     headers: {
-      isToken: false,
+      isToken: false
     },
     method: 'post',
-    data: { username, password, code, uuid },
+    data: { username, password, code, uuid }
   })
 }
 
@@ -17,10 +17,10 @@ export function register(data: any) {
   return request({
     url: '/auth/register',
     headers: {
-      isToken: false,
+      isToken: false
     },
     method: 'post',
-    data: data,
+    data: data
   })
 }
 
@@ -28,7 +28,7 @@ export function register(data: any) {
 export function refreshToken() {
   return request({
     url: '/auth/refresh',
-    method: 'post',
+    method: 'post'
   })
 }
 
@@ -36,7 +36,7 @@ export function refreshToken() {
 export function getInfo() {
   return request({
     url: '/system/user/getInfo',
-    method: 'get',
+    method: 'get'
   })
 }
 
@@ -44,7 +44,7 @@ export function getInfo() {
 export function logout() {
   return request({
     url: '/auth/logout',
-    method: 'delete',
+    method: 'delete'
   })
 }
 
@@ -53,9 +53,9 @@ export function getCodeImg() {
   return request({
     url: '/code',
     headers: {
-      isToken: false,
+      isToken: false
     },
     method: 'get',
-    timeout: 20000,
+    timeout: 20000
   })
 }

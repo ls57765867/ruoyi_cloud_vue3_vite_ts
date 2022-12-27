@@ -5,7 +5,7 @@
       backgroundColor:
         sideTheme === 'theme-dark'
           ? variables.menuBackground
-          : variables.menuLightBackground,
+          : variables.menuLightBackground
     }"
   >
     <logo v-if="showLogo" :collapse="isCollapse" />

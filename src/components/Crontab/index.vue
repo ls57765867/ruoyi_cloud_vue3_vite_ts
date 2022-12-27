@@ -172,12 +172,12 @@ const emit = defineEmits(['hide', 'fill'])
 const props = defineProps({
   hideComponent: {
     type: Array,
-    default: () => [],
+    default: () => []
   },
   expression: {
     type: String,
-    default: '',
-  },
+    default: ''
+  }
 })
 const tabTitles = ref(['秒', '分钟', '小时', '日', '月', '周', '年'])
 const tabActive = ref(0)
@@ -190,7 +190,7 @@ const crontabValueObj = ref({
   day: '*',
   month: '*',
   week: '?',
-  year: '',
+  year: ''
 })
 const crontabValueString = computed(() => {
   const obj = crontabValueObj.value
@@ -226,10 +226,10 @@ function resolveExp() {
         day: arr[3],
         month: arr[4],
         week: arr[5],
-        year: arr[6] ? arr[6] : '',
+        year: arr[6] ? arr[6] : ''
       }
       crontabValueObj.value = {
-        ...obj,
+        ...obj
       }
     }
   } else {
@@ -274,7 +274,7 @@ function clearCron() {
     day: '*',
     month: '*',
     week: '?',
-    year: '',
+    year: ''
   }
 }
 onMounted(() => {

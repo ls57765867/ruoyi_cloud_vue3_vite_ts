@@ -146,7 +146,7 @@ import selectUser from './selectUser.vue'
 import {
   allocatedUserList,
   authUserCancel,
-  authUserCancelAll,
+  authUserCancelAll
 } from '@/api/system/role'
 
 const route = useRoute()
@@ -165,7 +165,7 @@ const queryParams: any = reactive({
   pageSize: 10,
   roleId: route.params.roleId,
   userName: undefined,
-  phonenumber: undefined,
+  phonenumber: undefined
 })
 
 /** 查询授权用户列表 */

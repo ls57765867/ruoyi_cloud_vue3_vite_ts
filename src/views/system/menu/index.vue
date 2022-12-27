@@ -151,7 +151,7 @@
                 :props="{
                   value: 'menuId',
                   label: 'menuName',
-                  children: 'children',
+                  children: 'children'
                 }"
                 value-key="menuId"
                 placeholder="选择上级菜单"
@@ -391,7 +391,7 @@ import {
   delMenu,
   getMenu,
   listMenu,
-  updateMenu,
+  updateMenu
 } from '@/api/system/menu'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import IconSelect from '@/components/IconSelect/index.vue'
@@ -418,17 +418,17 @@ const data: any = reactive({
   form: {},
   queryParams: {
     menuName: undefined,
-    visible: undefined,
+    visible: undefined
   },
   rules: {
     menuName: [
-      { required: true, message: '菜单名称不能为空', trigger: 'blur' },
+      { required: true, message: '菜单名称不能为空', trigger: 'blur' }
     ],
     orderNum: [
-      { required: true, message: '菜单顺序不能为空', trigger: 'blur' },
+      { required: true, message: '菜单顺序不能为空', trigger: 'blur' }
     ],
-    path: [{ required: true, message: '路由地址不能为空', trigger: 'blur' }],
-  },
+    path: [{ required: true, message: '路由地址不能为空', trigger: 'blur' }]
+  }
 })
 
 const { queryParams, form, rules } = toRefs(data)
@@ -467,7 +467,7 @@ function reset() {
     isFrame: '1',
     isCache: '0',
     visible: '0',
-    status: '0',
+    status: '0'
   }
   proxy.resetForm('menuRef')
 }

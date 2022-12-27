@@ -3,7 +3,7 @@ const useTagsViewStore = defineStore('tags-view', {
   state: () => ({
     visitedViews: [] as any[],
     cachedViews: [] as any[],
-    iframeViews: [] as any[],
+    iframeViews: [] as any[]
   }),
   actions: {
     addView(view: any) {
@@ -15,7 +15,7 @@ const useTagsViewStore = defineStore('tags-view', {
         return
       this.iframeViews.push(
         Object.assign({}, view, {
-          title: view.meta.title || 'no-name',
+          title: view.meta.title || 'no-name'
         })
       )
     },
@@ -23,7 +23,7 @@ const useTagsViewStore = defineStore('tags-view', {
       if (this.visitedViews.some((v) => v.path === view.path)) return
       this.visitedViews.push(
         Object.assign({}, view, {
-          title: view.meta.title || 'no-name',
+          title: view.meta.title || 'no-name'
         })
       )
     },
@@ -39,7 +39,7 @@ const useTagsViewStore = defineStore('tags-view', {
         this.delCachedView(view)
         resolve({
           visitedViews: [...this.visitedViews],
-          cachedViews: [...this.cachedViews],
+          cachedViews: [...this.cachedViews]
         })
       })
     },
@@ -78,7 +78,7 @@ const useTagsViewStore = defineStore('tags-view', {
         this.delOthersCachedViews(view)
         resolve({
           visitedViews: [...this.visitedViews],
-          cachedViews: [...this.cachedViews],
+          cachedViews: [...this.cachedViews]
         })
       })
     },
@@ -110,7 +110,7 @@ const useTagsViewStore = defineStore('tags-view', {
         this.delAllCachedViews(view)
         resolve({
           visitedViews: [...this.visitedViews],
-          cachedViews: [...this.cachedViews],
+          cachedViews: [...this.cachedViews]
         })
       })
     },
@@ -181,8 +181,8 @@ const useTagsViewStore = defineStore('tags-view', {
         })
         resolve([...this.visitedViews])
       })
-    },
-  },
+    }
+  }
 })
 
 export default useTagsViewStore

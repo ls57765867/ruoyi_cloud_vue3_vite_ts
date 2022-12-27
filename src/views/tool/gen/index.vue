@@ -246,7 +246,7 @@ import {
   previewTable,
   delTable,
   genCode,
-  synchDb,
+  synchDb
 } from '@/api/tool/gen'
 import router from '@/router'
 import importTable from './importTable.vue'
@@ -270,14 +270,14 @@ const data = reactive<any>({
     pageNum: 1,
     pageSize: 10,
     tableName: undefined,
-    tableComment: undefined,
+    tableComment: undefined
   },
   preview: {
     open: false,
     title: '代码预览',
     data: {},
-    activeName: 'domain.java',
-  },
+    activeName: 'domain.java'
+  }
 })
 
 const { queryParams, preview } = toRefs(data)
@@ -371,7 +371,7 @@ function handleEditTable(row: any) {
   const tableId = row.tableId || ids.value[0]
   router.push({
     path: '/tool/gen-edit/index/' + tableId,
-    query: { pageNum: queryParams.value.pageNum },
+    query: { pageNum: queryParams.value.pageNum }
   })
 }
 /** 删除按钮操作 */

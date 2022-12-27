@@ -101,8 +101,8 @@ import { authUserSelectAll, unallocatedUserList } from '@/api/system/role'
 
 const props = defineProps({
   roleId: {
-    type: [Number, String],
-  },
+    type: [Number, String]
+  }
 })
 
 const { proxy } = getCurrentInstance() as any
@@ -118,7 +118,7 @@ const queryParams: any = reactive({
   pageSize: 10,
   roleId: undefined,
   userName: undefined,
-  phonenumber: undefined,
+  phonenumber: undefined
 })
 
 // 显示弹框
@@ -171,6 +171,6 @@ function handleSelectUser() {
 }
 
 defineExpose({
-  show,
+  show
 })
 </script>

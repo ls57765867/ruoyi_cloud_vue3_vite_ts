@@ -75,13 +75,13 @@ const props = defineProps({
       day: '*',
       month: '*',
       week: '?',
-      year: '',
-    },
+      year: ''
+    }
   },
   check: {
     type: Function,
-    default: () => {},
-  },
+    default: () => {}
+  }
 })
 const fullYear = ref(0)
 const maxFullYear = ref(0)
@@ -141,7 +141,7 @@ function changeRadioValue(value: any) {
     radioValue.value = 4
   } else {
     checkboxList.value = [
-      ...new Set(value.split(',').map((item: any) => Number(item))),
+      ...new Set(value.split(',').map((item: any) => Number(item)))
     ]
     radioValue.value = 5
   }

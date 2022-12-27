@@ -18,10 +18,10 @@ export default defineConfig(({ mode, command }) => {
         // 设置路径
         '~': path.resolve(__dirname, './'),
         // 设置别名
-        '@': path.resolve(__dirname, './src'),
+        '@': path.resolve(__dirname, './src')
       },
       // https://cn.vitejs.dev/config/#resolve-extensions
-      extensions: ['.ts', '.js', 'tsx', '.jsx', '.json', '.vue'],
+      extensions: ['.ts', '.js', 'tsx', '.jsx', '.json', '.vue']
     },
     // vite 相关配置
     server: {
@@ -31,11 +31,11 @@ export default defineConfig(({ mode, command }) => {
       proxy: {
         // https://cn.vitejs.dev/config/#server-proxy
         '/dev-api': {
-          target: 'http://192.168.0.100:8080',
+          target: 'http://192.168.0.245:8080',
           changeOrigin: true,
-          rewrite: (p) => p.replace(/^\/dev-api/, ''),
-        },
-      },
+          rewrite: (p) => p.replace(/^\/dev-api/, '')
+        }
+      }
     },
     //fix:error:stdin>:7356:1: warning: "@charset" must be the first rule in the file
     css: {
@@ -48,11 +48,11 @@ export default defineConfig(({ mode, command }) => {
                 if (atRule.name === 'charset') {
                   atRule.remove()
                 }
-              },
-            },
-          },
-        ],
-      },
-    },
+              }
+            }
+          }
+        ]
+      }
+    }
   }
 })

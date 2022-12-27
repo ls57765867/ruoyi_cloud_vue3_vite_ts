@@ -85,7 +85,7 @@ const options: any = reactive({
   autoCropHeight: 200, // 默认生成截图框高度
   fixedBox: true, // 固定截图框大小 不允许改变
   outputType: 'png', // 默认生成截图为PNG格式
-  previews: {}, //预览数据
+  previews: {} //预览数据
 })
 
 /** 编辑头像 */

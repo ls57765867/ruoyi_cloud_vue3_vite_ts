@@ -5,7 +5,7 @@ export function listPost(query: any) {
   return request({
     url: '/system/post/list',
     method: 'get',
-    params: query,
+    params: query
   })
 }
 
@@ -13,7 +13,7 @@ export function listPost(query: any) {
 export function getPost(postId: any) {
   return request({
     url: '/system/post/' + postId,
-    method: 'get',
+    method: 'get'
   })
 }
 
@@ -22,7 +22,7 @@ export function addPost(data: any) {
   return request({
     url: '/system/post',
     method: 'post',
-    data: data,
+    data: data
   })
 }
 
@@ -31,7 +31,7 @@ export function updatePost(data: any) {
   return request({
     url: '/system/post',
     method: 'put',
-    data: data,
+    data: data
   })
 }
 
@@ -39,6 +39,6 @@ export function updatePost(data: any) {
 export function delPost(postId: any) {
   return request({
     url: '/system/post/' + postId,
-    method: 'delete',
+    method: 'delete'
   })
 }

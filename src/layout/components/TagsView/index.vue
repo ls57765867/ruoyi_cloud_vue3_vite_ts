@@ -59,7 +59,7 @@ import {
   computed,
   watch,
   onMounted,
-  nextTick,
+  nextTick
 } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import ScrollPane from './ScrollPane.vue'
@@ -106,7 +106,7 @@ function activeStyle(tag: any) {
   if (!isActive(tag)) return {}
   return {
     'background-color': theme.value,
-    'border-color': theme.value,
+    'border-color': theme.value
   }
 }
 function isAffix(tag: any) {
@@ -141,7 +141,7 @@ function filterAffixTags(routes: any, basePath = '') {
         fullPath: tagPath,
         path: tagPath,
         name: route.name,
-        meta: { ...route.meta },
+        meta: { ...route.meta }
       })
     }
     if (route.children) {

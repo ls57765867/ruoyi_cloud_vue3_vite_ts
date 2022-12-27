@@ -5,7 +5,7 @@ export function list(query: any) {
   return request({
     url: '/system/operlog/list',
     method: 'get',
-    params: query,
+    params: query
   })
 }
 
@@ -13,7 +13,7 @@ export function list(query: any) {
 export function delOperlog(operId: any) {
   return request({
     url: '/system/operlog/' + operId,
-    method: 'delete',
+    method: 'delete'
   })
 }
 
@@ -21,6 +21,6 @@ export function delOperlog(operId: any) {
 export function cleanOperlog() {
   return request({
     url: '/system/operlog/clean',
-    method: 'delete',
+    method: 'delete'
   })
 }

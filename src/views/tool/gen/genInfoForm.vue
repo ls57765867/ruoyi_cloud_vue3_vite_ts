@@ -80,7 +80,7 @@
             :objMap="{
               value: 'menuId',
               label: 'menuName',
-              children: 'children',
+              children: 'children'
             }"
             placeholder="请选择系统菜单"
           />
@@ -271,24 +271,24 @@ interface IProps {
 }
 const props = withDefaults(defineProps<IProps>(), {
   info: null,
-  tables: null,
+  tables: null
 })
 
 // 表单校验
 const rules = ref({
   tplCategory: [{ required: true, message: '请选择生成模板', trigger: 'blur' }],
   packageName: [
-    { required: true, message: '请输入生成包路径', trigger: 'blur' },
+    { required: true, message: '请输入生成包路径', trigger: 'blur' }
   ],
   moduleName: [
-    { required: true, message: '请输入生成模块名', trigger: 'blur' },
+    { required: true, message: '请输入生成模块名', trigger: 'blur' }
   ],
   businessName: [
-    { required: true, message: '请输入生成业务名', trigger: 'blur' },
+    { required: true, message: '请输入生成业务名', trigger: 'blur' }
   ],
   functionName: [
-    { required: true, message: '请输入生成功能名', trigger: 'blur' },
-  ],
+    { required: true, message: '请输入生成功能名', trigger: 'blur' }
+  ]
 })
 function subSelectChange(value: any) {
   props.info.subTableFkName = ''

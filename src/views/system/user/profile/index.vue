@@ -75,7 +75,7 @@ const activeTab = ref('userinfo')
 const state: any = reactive({
   user: {},
   roleGroup: {},
-  postGroup: {},
+  postGroup: {}
 })
 
 function getUser() {

@@ -26,5 +26,5 @@ export default {
     } else {
       throw new Error(`请设置操作权限标签值`)
     }
-  },
+  }
 }

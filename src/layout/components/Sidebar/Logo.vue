@@ -6,7 +6,7 @@
       backgroundColor:
         sideTheme === 'theme-dark'
           ? variables.menuBackground
-          : variables.menuLightBackground,
+          : variables.menuLightBackground
     }"
   >
     <transition name="sidebarLogoFade">
@@ -24,7 +24,7 @@
             color:
               sideTheme === 'theme-dark'
                 ? variables.logoTitleColor
-                : variables.logoLightTitleColor,
+                : variables.logoLightTitleColor
           }"
         >
           {{ title }}
@@ -38,7 +38,7 @@
             color:
               sideTheme === 'theme-dark'
                 ? variables.logoTitleColor
-                : variables.logoLightTitleColor,
+                : variables.logoLightTitleColor
           }"
         >
           {{ title }}
@@ -57,8 +57,8 @@ import useSettingsStore from '@/store/modules/settings'
 defineProps({
   collapse: {
     type: Boolean,
-    required: true,
-  },
+    required: true
+  }
 })
 
 const title = ref('若依管理系统')

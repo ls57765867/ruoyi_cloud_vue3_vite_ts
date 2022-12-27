@@ -15,8 +15,8 @@ import { ref, watch, onMounted } from 'vue'
 const props = defineProps({
   ex: {
     type: String,
-    default: '',
-  },
+    default: ''
+  }
 })
 const dayRule = ref('')
 const dayRuleSup = ref()

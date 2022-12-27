@@ -5,7 +5,7 @@ export function listType(query: any) {
   return request({
     url: '/system/dict/type/list',
     method: 'get',
-    params: query,
+    params: query
   })
 }
 
@@ -13,7 +13,7 @@ export function listType(query: any) {
 export function getType(dictId: any) {
   return request({
     url: '/system/dict/type/' + dictId,
-    method: 'get',
+    method: 'get'
   })
 }
 
@@ -22,7 +22,7 @@ export function addType(data: any) {
   return request({
     url: '/system/dict/type',
     method: 'post',
-    data: data,
+    data: data
   })
 }
 
@@ -31,7 +31,7 @@ export function updateType(data: any) {
   return request({
     url: '/system/dict/type',
     method: 'put',
-    data: data,
+    data: data
   })
 }
 
@@ -39,7 +39,7 @@ export function updateType(data: any) {
 export function delType(dictId: any) {
   return request({
     url: '/system/dict/type/' + dictId,
-    method: 'delete',
+    method: 'delete'
   })
 }
 
@@ -47,7 +47,7 @@ export function delType(dictId: any) {
 export function refreshCache() {
   return request({
     url: '/system/dict/type/refreshCache',
-    method: 'delete',
+    method: 'delete'
   })
 }
 
@@ -55,6 +55,6 @@ export function refreshCache() {
 export function optionselect() {
   return request({
     url: '/system/dict/type/optionselect',
-    method: 'get',
+    method: 'get'
   })
 }

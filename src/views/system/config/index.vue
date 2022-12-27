@@ -240,7 +240,7 @@ import {
   delConfig,
   addConfig,
   updateConfig,
-  refreshCache,
+  refreshCache
 } from '@/api/system/config'
 
 const { proxy } = getCurrentInstance() as any
@@ -264,19 +264,19 @@ const data: any = reactive({
     pageSize: 10,
     configName: undefined,
     configKey: undefined,
-    configType: undefined,
+    configType: undefined
   },
   rules: {
     configName: [
-      { required: true, message: '参数名称不能为空', trigger: 'blur' },
+      { required: true, message: '参数名称不能为空', trigger: 'blur' }
     ],
     configKey: [
-      { required: true, message: '参数键名不能为空', trigger: 'blur' },
+      { required: true, message: '参数键名不能为空', trigger: 'blur' }
     ],
     configValue: [
-      { required: true, message: '参数键值不能为空', trigger: 'blur' },
-    ],
-  },
+      { required: true, message: '参数键值不能为空', trigger: 'blur' }
+    ]
+  }
 })
 
 const { queryParams, form, rules } = toRefs(data)
@@ -305,7 +305,7 @@ function reset() {
     configKey: undefined,
     configValue: undefined,
     configType: 'Y',
-    remark: undefined,
+    remark: undefined
   }
   proxy.resetForm('configRef')
 }
@@ -381,7 +381,7 @@ function handleExport() {
   proxy.download(
     'system/config/export',
     {
-      ...queryParams.value,
+      ...queryParams.value
     },
     `config_${new Date().getTime()}.xlsx`
   )

@@ -15,7 +15,7 @@ const usePermissionStore = defineStore('permission', {
     addRoutes: new Array<RouteRecordRaw>(),
     defaultRoutes: new Array<RouteRecordRaw>(),
     topbarRouters: new Array<RouteRecordRaw>(),
-    sidebarRouters: new Array<RouteRecordRaw>(),
+    sidebarRouters: new Array<RouteRecordRaw>()
   }),
   actions: {
     setRoutes(routes: RouteRecordRaw[]) {
@@ -52,8 +52,8 @@ const usePermissionStore = defineStore('permission', {
           resolve(rewriteRoutes)
         })
       })
-    },
-  },
+    }
+  }
 })
 
 // 遍历后台传来的路由字符串，转换为组件对象

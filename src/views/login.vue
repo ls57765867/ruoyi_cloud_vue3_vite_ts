@@ -98,13 +98,13 @@ const loginForm: any = ref({
   password: 'admin123',
   rememberMe: false,
   code: '',
-  uuid: '',
+  uuid: ''
 })
 
 const loginRules = {
   username: [{ required: true, trigger: 'blur', message: '请输入您的账号' }],
   password: [{ required: true, trigger: 'blur', message: '请输入您的密码' }],
-  code: [{ required: true, trigger: 'change', message: '请输入验证码' }],
+  code: [{ required: true, trigger: 'change', message: '请输入验证码' }]
 }
 
 const codeUrl = ref('')
@@ -123,7 +123,7 @@ function handleLogin() {
       if (loginForm.value.rememberMe) {
         Cookies.set('username', loginForm.value.username, { expires: 30 })
         Cookies.set('password', encrypt(loginForm.value.password), {
-          expires: 30,
+          expires: 30
         })
         Cookies.set('rememberMe', loginForm.value.rememberMe, { expires: 30 })
       } else {
@@ -168,7 +168,7 @@ function getCookie() {
     username: username === undefined ? loginForm.value.username : username,
     password:
       password === undefined ? loginForm.value.password : decrypt(password),
-    rememberMe: rememberMe === undefined ? false : Boolean(rememberMe),
+    rememberMe: rememberMe === undefined ? false : Boolean(rememberMe)
   }
 }
 

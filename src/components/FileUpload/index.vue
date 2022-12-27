@@ -73,7 +73,7 @@ const props = withDefaults(defineProps<IProps>(), {
   fileType: () => ['doc', 'xls', 'ppt', 'txt', 'pdf'],
 
   // 是否显示提示
-  isShowTip: true,
+  isShowTip: true
 })
 
 const { proxy } = getCurrentInstance() as any

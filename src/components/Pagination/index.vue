@@ -37,7 +37,7 @@ const props = withDefaults(defineProps<IProps>(), {
   layout: 'total, sizes, prev, pager, next, jumper',
   background: true,
   autoScroll: true,
-  hidden: false,
+  hidden: false
 })
 
 const emit = defineEmits(['update:page', 'pagination', 'update:limit'])
@@ -47,7 +47,7 @@ const currentPage = computed({
   },
   set(val) {
     emit('update:page', val)
-  },
+  }
 })
 const pageSize = computed({
   get() {
@@ -55,7 +55,7 @@ const pageSize = computed({
   },
   set(val) {
     emit('update:limit', val)
-  },
+  }
 })
 function handleSizeChange(val: any) {
   if (currentPage.value * val > props.total) {

@@ -16,7 +16,7 @@ import {
   onMounted,
   onBeforeUnmount,
   computed,
-  defineEmits,
+  defineEmits
 } from 'vue'
 import useTagsViewStore from '@/store/modules/tagsView'
 
@@ -102,7 +102,7 @@ function moveToTarget(currentTag: any) {
 }
 
 defineExpose({
-  moveToTarget,
+  moveToTarget
 })
 </script>
 

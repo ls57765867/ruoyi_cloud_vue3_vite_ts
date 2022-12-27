@@ -5,7 +5,7 @@ export function listJob(query: any) {
   return request({
     url: '/schedule/job/list',
     method: 'get',
-    params: query,
+    params: query
   })
 }
 
@@ -13,7 +13,7 @@ export function listJob(query: any) {
 export function getJob(jobId: any) {
   return request({
     url: '/schedule/job/' + jobId,
-    method: 'get',
+    method: 'get'
   })
 }
 
@@ -22,7 +22,7 @@ export function addJob(data: any) {
   return request({
     url: '/schedule/job',
     method: 'post',
-    data: data,
+    data: data
   })
 }
 
@@ -31,7 +31,7 @@ export function updateJob(data: any) {
   return request({
     url: '/schedule/job',
     method: 'put',
-    data: data,
+    data: data
   })
 }
 
@@ -39,7 +39,7 @@ export function updateJob(data: any) {
 export function delJob(jobId: any) {
   return request({
     url: '/schedule/job/' + jobId,
-    method: 'delete',
+    method: 'delete'
   })
 }
 
@@ -47,12 +47,12 @@ export function delJob(jobId: any) {
 export function changeJobStatus(jobId: any, status: any) {
   const data = {
     jobId,
-    status,
+    status
   }
   return request({
     url: '/schedule/job/changeStatus',
     method: 'put',
-    data: data,
+    data: data
   })
 }
 
@@ -60,11 +60,11 @@ export function changeJobStatus(jobId: any, status: any) {
 export function runJob(jobId: any, jobGroup: any) {
   const data = {
     jobId,
-    jobGroup,
+    jobGroup
   }
   return request({
     url: '/schedule/job/run',
     method: 'put',
-    data: data,
+    data: data
   })
 }

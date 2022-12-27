@@ -247,7 +247,7 @@ import {
   delType,
   addType,
   updateType,
-  refreshCache,
+  refreshCache
 } from '@/api/system/dict/type'
 
 const { proxy } = getCurrentInstance() as any
@@ -271,16 +271,14 @@ const data: any = reactive({
     pageSize: 10,
     dictName: undefined,
     dictType: undefined,
-    status: undefined,
+    status: undefined
   },
   rules: {
     dictName: [
-      { required: true, message: '字典名称不能为空', trigger: 'blur' },
+      { required: true, message: '字典名称不能为空', trigger: 'blur' }
     ],
-    dictType: [
-      { required: true, message: '字典类型不能为空', trigger: 'blur' },
-    ],
-  },
+    dictType: [{ required: true, message: '字典类型不能为空', trigger: 'blur' }]
+  }
 })
 
 const { queryParams, form, rules } = toRefs(data)
@@ -308,7 +306,7 @@ function reset() {
     dictName: undefined,
     dictType: undefined,
     status: '0',
-    remark: undefined,
+    remark: undefined
   }
   proxy.resetForm('dictRef')
 }
@@ -384,7 +382,7 @@ function handleExport() {
   proxy.download(
     'system/dict/type/export',
     {
-      ...queryParams.value,
+      ...queryParams.value
     },
     `dict_${new Date().getTime()}.xlsx`
   )

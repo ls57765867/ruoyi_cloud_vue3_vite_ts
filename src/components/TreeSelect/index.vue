@@ -36,7 +36,7 @@ import {
   ref,
   nextTick,
   onMounted,
-  defineEmits,
+  defineEmits
 } from 'vue'
 const { proxy } = getCurrentInstance() as any
 
@@ -48,32 +48,32 @@ const props = defineProps({
       return {
         value: 'id', // ID字段名
         label: 'label', // 显示名称
-        children: 'children', // 子级字段名
+        children: 'children' // 子级字段名
       }
-    },
+    }
   },
   /* 自动收起 */
   accordion: {
     type: Boolean,
     default: () => {
       return false
-    },
+    }
   },
   /**当前双向数据绑定的值 */
   value: {
     type: [String, Number],
-    default: '',
+    default: ''
   },
   /**当前的数据 */
   options: {
     type: Array,
-    default: () => [],
+    default: () => []
   },
   /**输入框内部的文字 */
   placeholder: {
     type: String,
-    default: '',
-  },
+    default: ''
+  }
 })
 
 const emit = defineEmits(['update:value'])
@@ -82,7 +82,7 @@ const valueId = computed({
   get: () => props.value,
   set: (val) => {
     emit('update:value', val)
-  },
+  }
 })
 const valueTitle = ref('')
 const defaultExpandedKey = ref<any[]>([])

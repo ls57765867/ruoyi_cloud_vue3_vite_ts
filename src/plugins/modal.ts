@@ -2,7 +2,7 @@ import {
   ElMessage,
   ElMessageBox,
   ElNotification,
-  ElLoading,
+  ElLoading
 } from 'element-plus'
 
 let loadingInstance: { close: () => void }
@@ -60,7 +60,7 @@ export default {
     return ElMessageBox.confirm(content, '系统提示', {
       confirmButtonText: '确定',
       cancelButtonText: '取消',
-      type: 'warning',
+      type: 'warning'
     })
   },
   // 提交内容
@@ -68,7 +68,7 @@ export default {
     return ElMessageBox.prompt(content, '系统提示', {
       confirmButtonText: '确定',
       cancelButtonText: '取消',
-      type: 'warning',
+      type: 'warning'
     })
   },
   // 打开遮罩层
@@ -76,11 +76,11 @@ export default {
     loadingInstance = ElLoading.service({
       lock: true,
       text: content,
-      background: 'rgba(0, 0, 0, 0.7)',
+      background: 'rgba(0, 0, 0, 0.7)'
     })
   },
   // 关闭遮罩层
   closeLoading() {
     loadingInstance.close()
-  },
+  }
 }

@@ -46,7 +46,7 @@ interface IProps {
 const props = withDefaults(defineProps<IProps>(), {
   showSearch: true,
   search: true,
-  gutter: 10,
+  gutter: 10
 })
 // const props = defineProps({
 //   showSearch: {

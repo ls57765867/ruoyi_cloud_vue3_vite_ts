@@ -3,7 +3,7 @@ import {
   ElNotification,
   ElMessageBox,
   ElMessage,
-  ElLoading,
+  ElLoading
 } from 'element-plus'
 import { getToken } from '@/utils/auth'
 import errorCode from '@/utils/errorCode'
@@ -24,7 +24,7 @@ const service = axios.create({
   // axios中请求配置有baseURL选项，表示请求URL公共部分
   baseURL: import.meta.env.VITE_APP_BASE_API,
   // 超时
-  timeout: 10000,
+  timeout: 10000
 })
 
 // request拦截器
@@ -56,7 +56,7 @@ service.interceptors.request.use(
           typeof config.data === 'object'
             ? JSON.stringify(config.data)
             : config.data,
-        time: new Date().getTime(),
+        time: new Date().getTime()
       }
       const sessionObj = cache.session.getJSON('sessionObj')
       if (
@@ -115,7 +115,7 @@ service.interceptors.response.use(
           {
             confirmButtonText: '重新登录',
             cancelButtonText: '取消',
-            type: 'warning',
+            type: 'warning'
           }
         )
           .then(() => {
@@ -168,18 +168,18 @@ export function download(
 ) {
   downloadLoadingInstance = ElLoading.service({
     text: '正在下载数据，请稍候',
-    background: 'rgba(0, 0, 0, 0.7)',
+    background: 'rgba(0, 0, 0, 0.7)'
   })
   return service
     .post(url, params, {
       transformRequest: [
         (params) => {
           return tansParams(params)
-        },
+        }
       ],
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       responseType: 'blob',
-      ...config,
+      ...config
     })
     .then(async (data: any) => {
       const isLogin = await blobValidate(data)

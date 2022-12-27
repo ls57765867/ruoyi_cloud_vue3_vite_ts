@@ -9,7 +9,7 @@ const useUserStore = defineStore('user', {
     name: '',
     avatar: '',
     roles: [] as string[],
-    permissions: [],
+    permissions: []
   }),
   actions: {
     // 登录
@@ -71,8 +71,8 @@ const useUserStore = defineStore('user', {
             reject(error)
           })
       })
-    },
-  },
+    }
+  }
 })
 
 export default useUserStore

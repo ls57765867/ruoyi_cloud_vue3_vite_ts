@@ -263,8 +263,8 @@ const data: any = reactive({
     pageSize: 10,
     dictName: undefined,
     dictType: undefined,
-    status: undefined,
-  },
+    status: undefined
+  }
 })
 
 const { queryParams, form } = toRefs(data)
@@ -337,7 +337,7 @@ function handleExport() {
   proxy.download(
     'schedule/job/log/export',
     {
-      ...queryParams.value,
+      ...queryParams.value
     },
     `job_log_${new Date().getTime()}.xlsx`
   )

@@ -49,7 +49,7 @@ function reset() {
 }
 
 defineExpose({
-  reset,
+  reset
 })
 </script>
 

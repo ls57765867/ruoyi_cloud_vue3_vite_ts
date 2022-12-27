@@ -33,7 +33,7 @@ export function parseTime(time: any, pattern: any) {
     h: date.getHours(),
     i: date.getMinutes(),
     s: date.getSeconds(),
-    a: date.getDay(),
+    a: date.getDay()
   }
   const time_str = format.replace(
     /{(y|m|d|h|i|s|a)+}/g,
@@ -174,7 +174,7 @@ export function handleTree(data: any, id: any, parentId: any, children: any) {
   let config = {
     id: id || 'id',
     parentId: parentId || 'parentId',
-    childrenList: children || 'children',
+    childrenList: children || 'children'
   }
 
   var childrenListMap: any = {}

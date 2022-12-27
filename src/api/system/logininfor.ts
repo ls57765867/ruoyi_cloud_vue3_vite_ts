@@ -5,7 +5,7 @@ export function list(query: any) {
   return request({
     url: '/system/logininfor/list',
     method: 'get',
-    params: query,
+    params: query
   })
 }
 
@@ -13,7 +13,7 @@ export function list(query: any) {
 export function delLogininfor(infoId: any) {
   return request({
     url: '/system/logininfor/' + infoId,
-    method: 'delete',
+    method: 'delete'
   })
 }
 
@@ -21,13 +21,13 @@ export function delLogininfor(infoId: any) {
 export function unlockLogininfor(userName: any) {
   return request({
     url: '/system/logininfor/unlock/' + userName,
-    method: 'get',
+    method: 'get'
   })
 }
 // 清空登录日志
 export function cleanLogininfor() {
   return request({
     url: '/system/logininfor/clean',
-    method: 'delete',
+    method: 'delete'
   })
 }

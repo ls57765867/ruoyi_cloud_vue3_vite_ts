@@ -5,7 +5,7 @@ export function listMenu(query?: any) {
   return request({
     url: '/system/menu/list',
     method: 'get',
-    params: query,
+    params: query
   })
 }
 
@@ -13,7 +13,7 @@ export function listMenu(query?: any) {
 export function getMenu(menuId: any) {
   return request({
     url: '/system/menu/' + menuId,
-    method: 'get',
+    method: 'get'
   })
 }
 
@@ -21,7 +21,7 @@ export function getMenu(menuId: any) {
 export function treeselect() {
   return request({
     url: '/system/menu/treeselect',
-    method: 'get',
+    method: 'get'
   })
 }
 
@@ -29,7 +29,7 @@ export function treeselect() {
 export function roleMenuTreeselect(roleId: any) {
   return request({
     url: '/system/menu/roleMenuTreeselect/' + roleId,
-    method: 'get',
+    method: 'get'
   })
 }
 
@@ -38,7 +38,7 @@ export function addMenu(data: any) {
   return request({
     url: '/system/menu',
     method: 'post',
-    data: data,
+    data: data
   })
 }
 
@@ -47,7 +47,7 @@ export function updateMenu(data: any) {
   return request({
     url: '/system/menu',
     method: 'put',
-    data: data,
+    data: data
   })
 }
 
@@ -55,6 +55,6 @@ export function updateMenu(data: any) {
 export function delMenu(menuId: any) {
   return request({
     url: '/system/menu/' + menuId,
-    method: 'delete',
+    method: 'delete'
   })
 }

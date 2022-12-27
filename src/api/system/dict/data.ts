@@ -5,7 +5,7 @@ export function listData(query: any) {
   return request({
     url: '/system/dict/data/list',
     method: 'get',
-    params: query,
+    params: query
   })
 }
 
@@ -13,7 +13,7 @@ export function listData(query: any) {
 export function getData(dictCode: number) {
   return request({
     url: '/system/dict/data/' + dictCode,
-    method: 'get',
+    method: 'get'
   })
 }
 
@@ -21,7 +21,7 @@ export function getData(dictCode: number) {
 export function getDicts(dictType: string) {
   return request({
     url: '/system/dict/data/type/' + dictType,
-    method: 'get',
+    method: 'get'
   })
 }
 
@@ -30,7 +30,7 @@ export function addData(data: any) {
   return request({
     url: '/system/dict/data',
     method: 'post',
-    data: data,
+    data: data
   })
 }
 
@@ -39,7 +39,7 @@ export function updateData(data: any) {
   return request({
     url: '/system/dict/data',
     method: 'put',
-    data: data,
+    data: data
   })
 }
 
@@ -47,6 +47,6 @@ export function updateData(data: any) {
 export function delData(dictCode: number) {
   return request({
     url: '/system/dict/data/' + dictCode,
-    method: 'delete',
+    method: 'delete'
   })
 }

@@ -9,7 +9,7 @@ const {
   tagsView,
   fixedHeader,
   sidebarLogo,
-  dynamicTitle,
+  dynamicTitle
 } = defaultSettings
 const layoutSetting = localStorage.getItem('layout-setting')
 const storageSetting = layoutSetting ? JSON.parse(layoutSetting) : ''
@@ -37,7 +37,7 @@ const useSettingsStore = defineStore('settings', {
     dynamicTitle:
       storageSetting.dynamicTitle === undefined
         ? dynamicTitle
-        : storageSetting.dynamicTitle,
+        : storageSetting.dynamicTitle
   }),
   actions: {
     // 修改布局设置
@@ -51,8 +51,8 @@ const useSettingsStore = defineStore('settings', {
     setTitle(title: string) {
       this.title = title
       useDynamicTitle()
-    },
-  },
+    }
+  }
 })
 
 export default useSettingsStore

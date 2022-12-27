@@ -501,7 +501,7 @@ import {
   getUser,
   updateUser,
   addUser,
-  deptTreeSelect,
+  deptTreeSelect
 } from '@/api/system/user'
 
 const router = useRouter()
@@ -539,7 +539,7 @@ const upload = reactive({
   // 设置上传的请求头部
   headers: { Authorization: 'Bearer ' + getToken() },
   // 上传的地址
-  url: import.meta.env.VITE_APP_BASE_API + '/system/user/importData',
+  url: import.meta.env.VITE_APP_BASE_API + '/system/user/importData'
 })
 // 列显隐信息
 const columns = ref([
@@ -549,7 +549,7 @@ const columns = ref([
   { key: 3, label: `部门`, visible: true },
   { key: 4, label: `手机号码`, visible: true },
   { key: 5, label: `状态`, visible: true },
-  { key: 6, label: `创建时间`, visible: true },
+  { key: 6, label: `创建时间`, visible: true }
 ])
 
 const data = reactive<any>({
@@ -560,7 +560,7 @@ const data = reactive<any>({
     userName: undefined,
     phonenumber: undefined,
     status: undefined,
-    deptId: undefined,
+    deptId: undefined
   },
   rules: {
     userName: [
@@ -569,11 +569,11 @@ const data = reactive<any>({
         min: 2,
         max: 20,
         message: '用户名称长度必须介于 2 和 20 之间',
-        trigger: 'blur',
-      },
+        trigger: 'blur'
+      }
     ],
     nickName: [
-      { required: true, message: '用户昵称不能为空', trigger: 'blur' },
+      { required: true, message: '用户昵称不能为空', trigger: 'blur' }
     ],
     password: [
       { required: true, message: '用户密码不能为空', trigger: 'blur' },
@@ -581,24 +581,24 @@ const data = reactive<any>({
         min: 5,
         max: 20,
         message: '用户密码长度必须介于 5 和 20 之间',
-        trigger: 'blur',
-      },
+        trigger: 'blur'
+      }
     ],
     email: [
       {
         type: 'email',
         message: '请输入正确的邮箱地址',
-        trigger: ['blur', 'change'],
-      },
+        trigger: ['blur', 'change']
+      }
     ],
     phonenumber: [
       {
         pattern: /^1[3|4|5|6|7|8|9][0-9]\d{8}$/,
         message: '请输入正确的手机号码',
-        trigger: 'blur',
-      },
-    ],
-  },
+        trigger: 'blur'
+      }
+    ]
+  }
 })
 
 const { queryParams, form, rules } = toRefs(data)
@@ -666,7 +666,7 @@ function handleExport() {
   proxy.download(
     'system/user/export',
     {
-      ...queryParams.value,
+      ...queryParams.value
     },
     `user_${new Date().getTime()}.xlsx`
   )
@@ -712,7 +712,7 @@ function handleResetPwd(row: any) {
       cancelButtonText: '取消',
       closeOnClickModal: false,
       inputPattern: /^.{5,20}$/,
-      inputErrorMessage: '用户密码长度必须介于 5 和 20 之间',
+      inputErrorMessage: '用户密码长度必须介于 5 和 20 之间'
     })
     .then(({ value }: any) => {
       resetUserPwd(row.userId, value).then((response) => {
@@ -776,7 +776,7 @@ function reset() {
     status: '0',
     remark: undefined,
     postIds: [],
-    roleIds: [],
+    roleIds: []
   }
   proxy.resetForm('userRef')
 }

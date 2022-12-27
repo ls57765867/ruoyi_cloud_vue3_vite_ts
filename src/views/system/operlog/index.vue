@@ -257,8 +257,8 @@ const data: any = reactive({
     title: undefined,
     operName: undefined,
     businessType: undefined,
-    status: undefined,
-  },
+    status: undefined
+  }
 })
 
 const { queryParams, form } = toRefs(data)
@@ -341,7 +341,7 @@ function handleExport() {
   proxy.download(
     'system/operlog/export',
     {
-      ...queryParams.value,
+      ...queryParams.value
     },
     `config_${new Date().getTime()}.xlsx`
   )

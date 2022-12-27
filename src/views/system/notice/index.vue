@@ -234,7 +234,7 @@ import {
   getNotice,
   delNotice,
   addNotice,
-  updateNotice,
+  updateNotice
 } from '@/api/system/notice'
 
 const { proxy } = getCurrentInstance() as any
@@ -260,16 +260,16 @@ const data: any = reactive({
     pageSize: 10,
     noticeTitle: undefined,
     createBy: undefined,
-    status: undefined,
+    status: undefined
   },
   rules: {
     noticeTitle: [
-      { required: true, message: '公告标题不能为空', trigger: 'blur' },
+      { required: true, message: '公告标题不能为空', trigger: 'blur' }
     ],
     noticeType: [
-      { required: true, message: '公告类型不能为空', trigger: 'change' },
-    ],
-  },
+      { required: true, message: '公告类型不能为空', trigger: 'change' }
+    ]
+  }
 })
 
 const { queryParams, form, rules } = toRefs(data)
@@ -295,7 +295,7 @@ function reset() {
     noticeTitle: undefined,
     noticeType: undefined,
     noticeContent: undefined,
-    status: '0',
+    status: '0'
   }
   proxy.resetForm('noticeRef')
 }

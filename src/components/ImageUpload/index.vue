@@ -59,7 +59,7 @@ const props = withDefaults(defineProps<IProps>(), {
   limit: 5,
   fileSize: 5,
   fileType: () => ['png', 'jpg', 'jpeg'],
-  isShowTip: true,
+  isShowTip: true
 })
 
 const { proxy } = getCurrentInstance() as any

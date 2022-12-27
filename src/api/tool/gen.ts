@@ -5,7 +5,7 @@ export function listTable(query: any) {
   return request({
     url: '/code/gen/list',
     method: 'get',
-    params: query,
+    params: query
   })
 }
 // 查询db数据库列表
@@ -13,7 +13,7 @@ export function listDbTable(query: any) {
   return request({
     url: '/code/gen/db/list',
     method: 'get',
-    params: query,
+    params: query
   })
 }
 
@@ -21,7 +21,7 @@ export function listDbTable(query: any) {
 export function getGenTable(tableId: any) {
   return request({
     url: '/code/gen/' + tableId,
-    method: 'get',
+    method: 'get'
   })
 }
 
@@ -30,7 +30,7 @@ export function updateGenTable(data: any) {
   return request({
     url: '/code/gen',
     method: 'put',
-    data: data,
+    data: data
   })
 }
 
@@ -39,7 +39,7 @@ export function importTable(data: any) {
   return request({
     url: '/code/gen/importTable',
     method: 'post',
-    params: data,
+    params: data
   })
 }
 
@@ -47,7 +47,7 @@ export function importTable(data: any) {
 export function previewTable(tableId: any) {
   return request({
     url: '/code/gen/preview/' + tableId,
-    method: 'get',
+    method: 'get'
   })
 }
 
@@ -55,7 +55,7 @@ export function previewTable(tableId: any) {
 export function delTable(tableId: any) {
   return request({
     url: '/code/gen/' + tableId,
-    method: 'delete',
+    method: 'delete'
   })
 }
 
@@ -63,7 +63,7 @@ export function delTable(tableId: any) {
 export function genCode(tableName: any) {
   return request({
     url: '/code/gen/genCode/' + tableName,
-    method: 'get',
+    method: 'get'
   })
 }
 
@@ -71,6 +71,6 @@ export function genCode(tableName: any) {
 export function synchDb(tableName: any) {
   return request({
     url: '/code/gen/synchDb/' + tableName,
-    method: 'get',
+    method: 'get'
   })
 }

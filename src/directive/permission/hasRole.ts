@@ -24,5 +24,5 @@ export default {
     } else {
       throw new Error(`请设置角色权限标签值`)
     }
-  },
+  }
 }

@@ -6,7 +6,7 @@ export function listUser(query: any) {
   return request({
     url: '/system/user/list',
     method: 'get',
-    params: query,
+    params: query
   })
 }
 
@@ -14,7 +14,7 @@ export function listUser(query: any) {
 export function getUser(userId?: any) {
   return request({
     url: '/system/user/' + parseStrEmpty(userId),
-    method: 'get',
+    method: 'get'
   })
 }
 
@@ -23,7 +23,7 @@ export function addUser(data: any) {
   return request({
     url: '/system/user',
     method: 'post',
-    data: data,
+    data: data
   })
 }
 
@@ -32,7 +32,7 @@ export function updateUser(data: any) {
   return request({
     url: '/system/user',
     method: 'put',
-    data: data,
+    data: data
   })
 }
 
@@ -40,7 +40,7 @@ export function updateUser(data: any) {
 export function delUser(userId: any) {
   return request({
     url: '/system/user/' + userId,
-    method: 'delete',
+    method: 'delete'
   })
 }
 
@@ -48,12 +48,12 @@ export function delUser(userId: any) {
 export function resetUserPwd(userId: any, password: any) {
   const data = {
     userId,
-    password,
+    password
   }
   return request({
     url: '/system/user/resetPwd',
     method: 'put',
-    data: data,
+    data: data
   })
 }
 
@@ -61,12 +61,12 @@ export function resetUserPwd(userId: any, password: any) {
 export function changeUserStatus(userId: any, status: any) {
   const data = {
     userId,
-    status,
+    status
   }
   return request({
     url: '/system/user/changeStatus',
     method: 'put',
-    data: data,
+    data: data
   })
 }
 
@@ -74,7 +74,7 @@ export function changeUserStatus(userId: any, status: any) {
 export function getUserProfile() {
   return request({
     url: '/system/user/profile',
-    method: 'get',
+    method: 'get'
   })
 }
 
@@ -83,7 +83,7 @@ export function updateUserProfile(data: any) {
   return request({
     url: '/system/user/profile',
     method: 'put',
-    data: data,
+    data: data
   })
 }
 
@@ -91,12 +91,12 @@ export function updateUserProfile(data: any) {
 export function updateUserPwd(oldPassword: any, newPassword: any) {
   const data = {
     oldPassword,
-    newPassword,
+    newPassword
   }
   return request({
     url: '/system/user/profile/updatePwd',
     method: 'put',
-    params: data,
+    params: data
   })
 }
 
@@ -105,7 +105,7 @@ export function uploadAvatar(data: any) {
   return request({
     url: '/system/user/profile/avatar',
     method: 'post',
-    data: data,
+    data: data
   })
 }
 
@@ -113,7 +113,7 @@ export function uploadAvatar(data: any) {
 export function getAuthRole(userId: any) {
   return request({
     url: '/system/user/authRole/' + userId,
-    method: 'get',
+    method: 'get'
   })
 }
 
@@ -122,7 +122,7 @@ export function updateAuthRole(data: any) {
   return request({
     url: '/system/user/authRole',
     method: 'put',
-    params: data,
+    params: data
   })
 }
 
@@ -130,6 +130,6 @@ export function updateAuthRole(data: any) {
 export function deptTreeSelect() {
   return request({
     url: '/system/user/deptTree',
-    method: 'get',
+    method: 'get'
   })
 }

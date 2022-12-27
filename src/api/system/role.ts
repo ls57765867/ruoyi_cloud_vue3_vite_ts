@@ -5,7 +5,7 @@ export function listRole(query: any) {
   return request({
     url: '/system/role/list',
     method: 'get',
-    params: query,
+    params: query
   })
 }
 
@@ -13,7 +13,7 @@ export function listRole(query: any) {
 export function getRole(roleId: any) {
   return request({
     url: '/system/role/' + roleId,
-    method: 'get',
+    method: 'get'
   })
 }
 
@@ -22,7 +22,7 @@ export function addRole(data: any) {
   return request({
     url: '/system/role',
     method: 'post',
-    data: data,
+    data: data
   })
 }
 
@@ -31,7 +31,7 @@ export function updateRole(data: any) {
   return request({
     url: '/system/role',
     method: 'put',
-    data: data,
+    data: data
   })
 }
 
@@ -40,7 +40,7 @@ export function dataScope(data: any) {
   return request({
     url: '/system/role/dataScope',
     method: 'put',
-    data: data,
+    data: data
   })
 }
 
@@ -48,12 +48,12 @@ export function dataScope(data: any) {
 export function changeRoleStatus(roleId: any, status: any) {
   const data = {
     roleId,
-    status,
+    status
   }
   return request({
     url: '/system/role/changeStatus',
     method: 'put',
-    data: data,
+    data: data
   })
 }
 
@@ -61,7 +61,7 @@ export function changeRoleStatus(roleId: any, status: any) {
 export function delRole(roleId: any) {
   return request({
     url: '/system/role/' + roleId,
-    method: 'delete',
+    method: 'delete'
   })
 }
 
@@ -70,7 +70,7 @@ export function allocatedUserList(query: any) {
   return request({
     url: '/system/role/authUser/allocatedList',
     method: 'get',
-    params: query,
+    params: query
   })
 }
 
@@ -79,7 +79,7 @@ export function unallocatedUserList(query: any) {
   return request({
     url: '/system/role/authUser/unallocatedList',
     method: 'get',
-    params: query,
+    params: query
   })
 }
 
@@ -88,7 +88,7 @@ export function authUserCancel(data: any) {
   return request({
     url: '/system/role/authUser/cancel',
     method: 'put',
-    data: data,
+    data: data
   })
 }
 
@@ -97,7 +97,7 @@ export function authUserCancelAll(data: any) {
   return request({
     url: '/system/role/authUser/cancelAll',
     method: 'put',
-    params: data,
+    params: data
   })
 }
 
@@ -106,7 +106,7 @@ export function authUserSelectAll(data: any) {
   return request({
     url: '/system/role/authUser/selectAll',
     method: 'put',
-    params: data,
+    params: data
   })
 }
 
@@ -114,6 +114,6 @@ export function authUserSelectAll(data: any) {
 export function deptTreeSelect(roleId: any) {
   return request({
     url: '/system/role/deptTree/' + roleId,
-    method: 'get',
+    method: 'get'
   })
 }

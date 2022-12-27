@@ -14,7 +14,7 @@ export default {
       method: 'get',
       url: url,
       responseType: 'blob',
-      headers: { Authorization: 'Bearer ' + getToken() },
+      headers: { Authorization: 'Bearer ' + getToken() }
     }).then(async (res) => {
       const isLogin = await blobValidate(res.data)
       if (isLogin) {
@@ -33,5 +33,5 @@ export default {
     const rspObj = JSON.parse(resText)
     const errMsg = errorCode[rspObj.code] || rspObj.msg || errorCode['default']
     ElMessage.error(errMsg)
-  },
+  }
 }

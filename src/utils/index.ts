@@ -358,7 +358,7 @@ export const beautifierConf = {
     indent_inner_html: true,
     comma_first: false,
     e4x: true,
-    indent_empty_lines: true,
+    indent_empty_lines: true
   },
   js: {
     indent_size: '2',
@@ -377,8 +377,8 @@ export const beautifierConf = {
     indent_inner_html: true,
     comma_first: false,
     e4x: true,
-    indent_empty_lines: true,
-  },
+    indent_empty_lines: true
+  }
 }
 
 // 首字母大小

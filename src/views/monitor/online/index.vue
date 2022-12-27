@@ -105,7 +105,7 @@ const pageSize = ref(10)
 
 const queryParams = ref({
   ipaddr: undefined,
-  userName: undefined,
+  userName: undefined
 })
 
 /** 查询登录日志列表 */

@@ -64,15 +64,14 @@
   </div>
 </template>
 
-<script setup lang="ts" name="Profile" lang="ts">
+<script setup name="Profile" lang="ts">
 import { ref, reactive } from 'vue'
 import userAvatar from './userAvatar.vue'
 import userInfo from './userInfo.vue'
 import resetPwd from './resetPwd.vue'
 import { getUserProfile } from '@/api/system/user'
-
 const activeTab = ref('userinfo')
-const state: any = reactive({
+let state: any = reactive({
   user: {},
   roleGroup: {},
   postGroup: {}

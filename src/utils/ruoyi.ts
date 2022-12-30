@@ -2,9 +2,8 @@
  * 通用js方法封装处理
  * Copyright (c) 2019 ruoyi
  */
-import { TFormatKey } from './type'
 // 日期格式化
-export function parseTime(time: any, pattern: any) {
+export function parseTime(time: string | number | Date, pattern: string) {
   if (arguments.length === 0 || !time) {
     return null
   }
@@ -37,7 +36,7 @@ export function parseTime(time: any, pattern: any) {
   }
   const time_str = format.replace(
     /{(y|m|d|h|i|s|a)+}/g,
-    (result: any, key: TFormatKey) => {
+    (result: string | any[], key: string) => {
       let value = formatObj[key]
       // Note: getDay() returns 0 on Sunday
       if (key === 'a') {
@@ -60,7 +59,7 @@ export function resetForm(this: any, refName: any) {
 }
 
 // 添加日期范围
-export function addDateRange(params: any, dateRange: any[], propName: any) {
+export function addDateRange(params: any, dateRange: any[], propName: string) {
   let search = params
   search.params =
     typeof search.params === 'object' &&
@@ -80,7 +79,7 @@ export function addDateRange(params: any, dateRange: any[], propName: any) {
 }
 
 // 回显数据字典
-export function selectDictLabel(datas: any, value: any) {
+export function selectDictLabel(datas: any, value: string | undefined) {
   if (value === undefined) {
     return ''
   }
@@ -98,7 +97,11 @@ export function selectDictLabel(datas: any, value: any) {
 }
 
 // 回显数据字典（字符串数组）
-export function selectDictLabels(datas: any, value: any, separator: any) {
+export function selectDictLabels(
+  datas: any,
+  value: string | undefined,
+  separator: any
+) {
   if (value === undefined || value.length === 0) {
     return ''
   }
@@ -148,7 +151,10 @@ export function parseStrEmpty(str: string) {
 }
 
 // 数据合并
-export function mergeRecursive(source: any, target: any) {
+export function mergeRecursive(
+  source: { [x: string]: any },
+  target: { [x: string]: any }
+) {
   for (var p in target) {
     try {
       if (target[p].constructor == Object) {
@@ -218,7 +224,7 @@ export function handleTree(data: any, id: any, parentId: any, children: any) {
  * 参数处理
  * @param {*} params  参数
  */
-export function tansParams(params: any) {
+export function tansParams(params: { [x: string]: any }) {
   let result = ''
   for (const propName of Object.keys(params)) {
     const value = params[propName]
@@ -245,7 +251,7 @@ export function tansParams(params: any) {
 }
 
 // 返回项目路径
-export function getNormalPath(p: any) {
+export function getNormalPath(p: string) {
   if (p.length === 0 || !p || p == 'undefined') {
     return p
   }

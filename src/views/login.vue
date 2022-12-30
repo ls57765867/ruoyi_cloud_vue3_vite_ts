@@ -122,7 +122,7 @@ function handleLogin() {
       // 勾选了需要记住密码设置在 cookie 中设置记住用户名和密码
       if (loginForm.value.rememberMe) {
         Cookies.set('username', loginForm.value.username, { expires: 30 })
-        Cookies.set('password', encrypt(loginForm.value.password), {
+        Cookies.set('password', encrypt(loginForm.value.password).toString(), {
           expires: 30
         })
         Cookies.set('rememberMe', loginForm.value.rememberMe, { expires: 30 })

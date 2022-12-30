@@ -102,7 +102,7 @@ export function byteLength(str: string) {
  * @param {Array} actual
  * @returns {Array}
  */
-export function cleanArray(actual: any[]) {
+export function cleanArray(actual: string | any[]): any[] {
   const newArray = []
   for (let i = 0; i < actual.length; i++) {
     if (actual[i]) {
@@ -116,7 +116,7 @@ export function cleanArray(actual: any[]) {
  * @param {Object} json
  * @returns {Array}
  */
-export function param(json: string) {
+export function param(json: { [x: string]: string | number | boolean }): any {
   if (!json) return ''
   return cleanArray(
     Object.keys(json).map((key) => {
@@ -130,7 +130,7 @@ export function param(json: string) {
  * @param {string} url
  * @returns {Object}
  */
-export function param2Obj(url: string) {
+export function param2Obj(url: string): object {
   const search = decodeURIComponent(url.split('?')[1]).replace(/\+/g, ' ')
   if (!search) {
     return {}
@@ -164,7 +164,10 @@ export function html2Text(val: string): string {
  * @param {(Object|Array)} source
  * @returns {Object}
  */
-export function objectMerge(target: any, source: any) {
+export function objectMerge(
+  target: { [x: string]: any },
+  source: string | any[]
+): object {
   if (typeof target !== 'object') {
     target = {}
   }
@@ -186,7 +189,10 @@ export function objectMerge(target: any, source: any) {
  * @param {HTMLElement} element
  * @param {string} className
  */
-export function toggleClass(element: { className: any }, className: string) {
+export function toggleClass(
+  element: { className: any },
+  className: string | any[]
+) {
   if (!element || !className) {
     return
   }
@@ -244,7 +250,7 @@ export function debounce(func: any, wait: number, immediate: boolean) {
     }
   }
 
-  return function (...args: any) {
+  return function (this: any, ...args: any) {
     context = this
     timestamp = +new Date()
     const callNow = immediate && !timeout
@@ -266,9 +272,9 @@ export function debounce(func: any, wait: number, immediate: boolean) {
  * @param {Object} source
  * @returns {Object}
  */
-export function deepClone(source) {
+export function deepClone(source: any): object {
   if (!source && typeof source !== 'object') {
-    throw new Error('error arguments', 'deepClone')
+    throw new Error('error arguments')
   }
   const targetObj = source.constructor === Array ? [] : {}
   Object.keys(source).forEach((keys) => {
@@ -285,7 +291,7 @@ export function deepClone(source) {
  * @param {Array} arr
  * @returns {Array}
  */
-export function uniqueArr(arr) {
+export function uniqueArr(arr: Iterable<unknown> | null | undefined) {
   return Array.from(new Set(arr))
 }
 
@@ -294,7 +300,7 @@ export function uniqueArr(arr) {
  */
 export function createUniqueString() {
   const timestamp = +new Date() + ''
-  const randomNum = parseInt((1 + Math.random()) * 65536) + ''
+  const randomNum = (1 + Math.random()) * 65536 + ''
   return (+(randomNum + timestamp)).toString(32)
 }
 
@@ -304,7 +310,7 @@ export function createUniqueString() {
  * @param {string} cls
  * @returns {boolean}
  */
-export function hasClass(ele, cls) {
+export function hasClass(ele: HTMLElement, cls: string) {
   return !!ele.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'))
 }
 
@@ -313,7 +319,7 @@ export function hasClass(ele, cls) {
  * @param {HTMLElement} elm
  * @param {string} cls
  */
-export function addClass(ele, cls) {
+export function addClass(ele: HTMLElement, cls: string) {
   if (!hasClass(ele, cls)) ele.className += ' ' + cls
 }
 
@@ -322,20 +328,22 @@ export function addClass(ele, cls) {
  * @param {HTMLElement} elm
  * @param {string} cls
  */
-export function removeClass(ele, cls) {
+export function removeClass(ele: HTMLElement, cls: string) {
   if (hasClass(ele, cls)) {
     const reg = new RegExp('(\\s|^)' + cls + '(\\s|$)')
     ele.className = ele.className.replace(reg, ' ')
   }
 }
 
-export function makeMap(str, expectsLowerCase) {
+export function makeMap(str: string, expectsLowerCase: any) {
   const map = Object.create(null)
   const list = str.split(',')
   for (let i = 0; i < list.length; i++) {
     map[list[i]] = true
   }
-  return expectsLowerCase ? (val) => map[val.toLowerCase()] : (val) => map[val]
+  return expectsLowerCase
+    ? (val: string) => map[val.toLowerCase()]
+    : (val: string | number) => map[val]
 }
 
 export const exportDefault = 'export default '
@@ -382,15 +390,15 @@ export const beautifierConf = {
 }
 
 // 首字母大小
-export function titleCase(str) {
+export function titleCase(str: string) {
   return str.replace(/( |^)[a-z]/g, (L) => L.toUpperCase())
 }
 
 // 下划转驼峰
-export function camelCase(str) {
+export function camelCase(str: string) {
   return str.replace(/_[a-z]/g, (str1) => str1.substr(-1).toUpperCase())
 }
 
-export function isNumberStr(str) {
+export function isNumberStr(str: string) {
   return /^[+-]?(0|([1-9]\d*))(\.\d+)?$/g.test(str)
 }

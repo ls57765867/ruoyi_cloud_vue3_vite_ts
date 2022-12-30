@@ -4,7 +4,7 @@ import { getDicts } from '@/api/system/dict/data'
 /**
  * 获取字典数据
  */
-export function useDict(...args: any) {
+export function useDict(...args: any[]) {
   const res = ref<any>({})
   return (() => {
     args.forEach((dictType: any, index: number) => {

@@ -26,7 +26,7 @@ export function hexToRgb(str: any) {
 }
 
 // rgb颜色转Hex颜色
-export function rgbToHex(r: any, g: any, b: any) {
+export function rgbToHex(r: number, g: number, b: number) {
   let hexs = [r.toString(16), g.toString(16), b.toString(16)]
   for (let i = 0; i < 3; i++) {
     if (hexs[i].length == 1) {

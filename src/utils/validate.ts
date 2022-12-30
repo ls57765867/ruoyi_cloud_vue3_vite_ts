@@ -3,7 +3,7 @@
  * @param {string} path
  * @returns {Boolean}
  */
-export function isHttp(url: any) {
+export function isHttp(url: string | string[]): boolean {
   return url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1
 }
 
@@ -12,7 +12,7 @@ export function isHttp(url: any) {
  * @param {string} path
  * @returns {Boolean}
  */
-export function isExternal(path: any) {
+export function isExternal(path: string): boolean {
   return /^(https?:|mailto:|tel:)/.test(path)
 }
 
@@ -20,7 +20,7 @@ export function isExternal(path: any) {
  * @param {string} str
  * @returns {Boolean}
  */
-export function validUsername(str: string) {
+export function validUsername(str: string): boolean {
   const valid_map = ['admin', 'editor']
   return valid_map.indexOf(str.trim()) >= 0
 }
@@ -39,7 +39,7 @@ export function validURL(url: string) {
  * @param {string} str
  * @returns {Boolean}
  */
-export function validLowerCase(str: string) {
+export function validLowerCase(str: string): boolean {
   const reg = /^[a-z]+$/
   return reg.test(str)
 }
@@ -48,7 +48,7 @@ export function validLowerCase(str: string) {
  * @param {string} str
  * @returns {Boolean}
  */
-export function validUpperCase(str: string) {
+export function validUpperCase(str: string): boolean {
   const reg = /^[A-Z]+$/
   return reg.test(str)
 }
@@ -57,7 +57,7 @@ export function validUpperCase(str: string) {
  * @param {string} str
  * @returns {Boolean}
  */
-export function validAlphabets(str: string) {
+export function validAlphabets(str: string): boolean {
   const reg = /^[A-Za-z]+$/
   return reg.test(str)
 }
@@ -66,7 +66,7 @@ export function validAlphabets(str: string) {
  * @param {string} email
  * @returns {Boolean}
  */
-export function validEmail(email: string) {
+export function validEmail(email: string): boolean {
   const reg =
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   return reg.test(email)
@@ -76,7 +76,7 @@ export function validEmail(email: string) {
  * @param {string} str
  * @returns {Boolean}
  */
-export function isString(str: any) {
+export function isString(str: any): boolean {
   if (typeof str === 'string' || str instanceof String) {
     return true
   }
@@ -87,7 +87,7 @@ export function isString(str: any) {
  * @param {Array} arg
  * @returns {Boolean}
  */
-export function isArray(arg: any) {
+export function isArray(arg: any): boolean {
   if (typeof Array.isArray === 'undefined') {
     return Object.prototype.toString.call(arg) === '[object Array]'
   }

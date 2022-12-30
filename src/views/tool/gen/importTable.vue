@@ -71,7 +71,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, getCurrentInstance, reactive, defineEmits } from 'vue'
+import { ref, getCurrentInstance, reactive } from 'vue'
 import { listDbTable, importTable } from '@/api/tool/gen'
 
 const total = ref(0)

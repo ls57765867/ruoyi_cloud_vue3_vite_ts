@@ -32,14 +32,15 @@ export default {
     }
   },
   // 关闭指定tab页签
-  closePage(obj: any) {
+  closePage(obj?: any) {
     if (obj === undefined) {
       const viewStore = useTagsViewStore()
       viewStore.delView(router.currentRoute.value).then(({ lastPath }: any) => {
         return router.push(lastPath || '/index')
       })
+    } else {
+      return useTagsViewStore().delView(obj)
     }
-    return useTagsViewStore().delView(obj)
   },
   // 关闭所有tab页签
   closeAllPage() {

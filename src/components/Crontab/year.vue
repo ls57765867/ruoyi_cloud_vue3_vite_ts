@@ -63,7 +63,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, computed, onMounted, defineEmits } from 'vue'
+import { ref, watch, computed, onMounted } from 'vue'
 const emit = defineEmits(['update'])
 const props = defineProps({
   cron: {

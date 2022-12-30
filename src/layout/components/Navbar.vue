@@ -65,7 +65,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineEmits } from 'vue'
 import { ElMessageBox } from 'element-plus'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
 import TopNav from '@/components/TopNav/index.vue'

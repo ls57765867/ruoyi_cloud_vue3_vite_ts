@@ -15,8 +15,7 @@ import {
   getCurrentInstance,
   onMounted,
   onBeforeUnmount,
-  computed,
-  defineEmits
+  computed
 } from 'vue'
 import useTagsViewStore from '@/store/modules/tagsView'
 

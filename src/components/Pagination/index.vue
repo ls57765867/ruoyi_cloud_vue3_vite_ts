@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineEmits } from 'vue'
+import { computed } from 'vue'
 import { scrollTo } from '@/utils/scroll-to'
 interface IProps {
   total: number

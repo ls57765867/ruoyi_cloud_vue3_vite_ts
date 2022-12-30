@@ -35,8 +35,7 @@ import {
   computed,
   ref,
   nextTick,
-  onMounted,
-  defineEmits
+  onMounted
 } from 'vue'
 const { proxy } = getCurrentInstance() as any
 

@@ -53,7 +53,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, computed, getCurrentInstance, defineEmits } from 'vue'
+import { ref, watch, computed, getCurrentInstance } from 'vue'
 
 import { getToken } from '@/utils/auth'
 interface IProps {

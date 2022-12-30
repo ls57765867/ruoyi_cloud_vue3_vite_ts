@@ -234,7 +234,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="JobLog" lang="ts">
+<script setup name="JobLog" lang="ts">
 import { ref, getCurrentInstance, reactive, toRefs } from 'vue'
 import { useRoute } from 'vue-router'
 import { getJob } from '@/api/monitor/job'

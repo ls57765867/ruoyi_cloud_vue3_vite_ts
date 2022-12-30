@@ -159,7 +159,7 @@
   </el-card>
 </template>
 
-<script setup lang="ts" name="GenEdit" lang="ts">
+<script setup name="GenEdit" lang="ts">
 import { getCurrentInstance, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { getGenTable, updateGenTable } from '@/api/tool/gen'

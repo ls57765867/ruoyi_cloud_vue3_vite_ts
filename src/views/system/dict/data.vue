@@ -240,7 +240,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="Data" lang="ts">
+<script setup name="Data" lang="ts">
 import { reactive, getCurrentInstance, ref, toRefs, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import useDictStore from '@/store/modules/dict'

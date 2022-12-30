@@ -139,7 +139,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="AuthUser" lang="ts">
+<script setup name="AuthUser" lang="ts">
 import { getCurrentInstance, ref, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import selectUser from './selectUser.vue'

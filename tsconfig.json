@@ -1,29 +1,24 @@
 {
   "compilerOptions": {
-    "allowJs": true,
-    "target": "ESNext",
-    "useDefineForClassFields": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "noEmit": false,
+    "target": "esnext",
+    "module": "esnext",
     "strict": true,
     "jsx": "preserve",
-    "sourceMap": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
     "esModuleInterop": true,
-    "lib": ["ESNext", "DOM"],
-    "skipLibCheck": true, // 不对第三方依赖类型检查 ，element-plus 生产打包报错
-    "allowSyntheticDefaultImports": true, // 默认导入
-    "suppressImplicitAnyIndexErrors": true, //加入这段代码解决main.ts报错问题
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
     "baseUrl": ".",
+    "types": ["vite/client", "element-plus/global"],
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "components/*": ["src/components/*"]
     },
-    "types": ["vite/client", "element-plus/global"]
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
-
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
   "exclude": ["node_modules", "dist", "script"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

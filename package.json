@@ -2,7 +2,7 @@
   "name": "ruoyi-vite-ts",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "dev": "vite",
     "build:prod": "vite build",
@@ -23,6 +23,7 @@
     "jsencrypt": "^3.3.1",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.28",
+    "unplugin-auto-import": "^0.15.2",
     "vue": "^3.2.45",
     "vue-cropper": "^1.0.5",
     "vue-eslint-parser": "^9.0.0",

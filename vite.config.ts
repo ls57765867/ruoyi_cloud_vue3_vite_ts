@@ -25,15 +25,16 @@ export default defineConfig(({ mode, command }) => {
     },
     // vite 相关配置
     server: {
-      port: 80,
+      port: 5173,
       host: true,
       open: true,
       proxy: {
         // https://cn.vitejs.dev/config/#server-proxy
-        '/dev-api': {
-          target: 'http://192.168.0.100:8080',
-          changeOrigin: true,
-          rewrite: (p) => p.replace(/^\/dev-api/, '')
+        [env.VITE_APP_BASE_API]: {
+          target: env.VITE_APP_BASE_URL, // 后端服务实际地址
+          changeOrigin: true
+          //rewrite: (path) => path.replace(/^\/dev-api/, ""),
+          // rewrite: path => path.replace(new RegExp('^' + env.VITE_APP_BASE_API), '')
         }
       }
     },
